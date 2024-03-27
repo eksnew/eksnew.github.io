@@ -269,6 +269,149 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2023/06/25/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/LaTeX%E5%B0%8F%E6%95%99%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/214+308_2_pi.png">
+      <meta itemprop="name" content="eksnew">
+      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eksnew's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/06/25/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/LaTeX%E5%B0%8F%E6%95%99%E7%A8%8B/" class="post-title-link" itemprop="url">$LaTeX$小教程</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2023-06-25 20:30:58" itemprop="dateCreated datePublished" datetime="2023-06-25T20:30:58+08:00">2023-06-25</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-03-18 19:33:34" itemprop="dateModified" datetime="2024-03-18T19:33:34+08:00">2024-03-18</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">零散知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="如何...">1. 如何...？</h2>
+<h3 id="如何在latex中绘制算法伪代码">1.1. 如何在中绘制算法伪代码</h3>
+<p>为了绘制算法伪代码，应在<code>\begin{document}</code>前引入如下宏包： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\usepackage{algorithm2e}</span><br></pre></td></tr></table></figure> 接着便可以使用各种命令绘制算法伪代码了。常见的命令有输入输出定义： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\KwIn{input}</span><br><span class="line">\KwOut{output}</span><br><span class="line">\KwData{input}</span><br><span class="line">\KwResult{output}</span><br></pre></td></tr></table></figure> 条件控制系列： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">\If{condition}{then block}</span><br><span class="line">\ElseIf{elseif block}</span><br><span class="line">\For{condition}{text loop}</span><br><span class="line">\While{condition}{text loop}</span><br></pre></td></tr></table></figure> 等等，更为详细的内容请参阅宏包文档。一个简单的Demo如下： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">\begin{algorithm}[htbp]</span><br><span class="line">  \caption{Adam算法伪代码}</span><br><span class="line">  \setstretch{1.698} % Word 内 1.5 倍行距对应 LaTeX 行距为 1.698</span><br><span class="line">  \label{a:adam}</span><br><span class="line"></span><br><span class="line">  \KwIn{学习率$\eta_k$，初始参数$\theta$，小常数$\sigma$，</span><br><span class="line">    累计梯度$v$，累计平方梯度$r$，衰减系数$\rho$，动量参数$\alpha$</span><br><span class="line">  }</span><br><span class="line">  \While{不满足结束条件}{</span><br><span class="line">    从训练集中采集$m$个样本$\{ x^{(1)}, x^{(2)}, \cdots, x^{(m)} \}$\;</span><br><span class="line">    令$\hat{g} = 0$\;</span><br><span class="line">    \For{$i = 1$至$m$}{</span><br><span class="line">      计算梯度估计：</span><br><span class="line">      $\hat{g} \leftarrow \hat{g} + \frac{1}{m} \nabla_{} L(f(x^{(i)}, \theta), y^{(i)})$\;</span><br><span class="line">      计算累计梯度：</span><br><span class="line">      $v_t = \alpha v_{t-1} + (1 - \alpha)g$\;</span><br><span class="line">      计算累计平方梯度：</span><br><span class="line">      $r_t = \rho r_{t-1} + (1 - \rho)g \odot g$\;</span><br><span class="line">      修正：</span><br><span class="line">      $\hat{v}_t = \frac{v_t}{1-\alpha}, \hat{r}_t = \frac{r_t}{1-\rho}$\;</span><br><span class="line">      更新参数：</span><br><span class="line">      $\theta \leftarrow \theta - \eta_k \hat{g}$\;</span><br><span class="line">    }</span><br><span class="line">    更新参数：$\theta \leftarrow \theta - \eta_k \frac{\hat{v}_t}{\sqrt{\hat{r}_t + \sigma}}$\;</span><br><span class="line">  }</span><br><span class="line">\end{algorithm}</span><br></pre></td></tr></table></figure></p>
+<h3 id="如何配置交叉引用">1.2. 如何配置交叉引用？</h3>
+<h4 id="配置bibtex">1.2.1. 配置BibTeX</h4>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">\documentclass{...}</span><br><span class="line">\usepackage{gbt7714}  % 使用gbt7714宏包</span><br><span class="line">...</span><br><span class="line">\begin{document}</span><br><span class="line">...</span><br><span class="line">\cite{...}  % 在此处引用</span><br><span class="line">...</span><br><span class="line">\bibliographystyle{gbt7714-numerical}</span><br><span class="line">\bibliography{reference}</span><br><span class="line">\end{document}</span><br></pre></td></tr></table></figure>
+<p>其中，<code>\bibliography{reference}</code>指定了参考文献的位置，应与<code>.tex</code>文件放在同一目录下，故此处指示的是同一目录下的<code>reference.bib</code>。<code>.bib</code>文件的内容一般如下所示： <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">@article{liu2017learning,</span><br><span class="line">  title         = {Learning Efficient Convolutional Networks through Network Slimming},</span><br><span class="line">  author        = {Zhuang Liu and Jianguo Li and Zhiqiang Shen and Gao Huang and Shoumeng Yan and Changshui Zhang},</span><br><span class="line">  year          = {2017},</span><br><span class="line">  eprint        = {1708.06519},</span><br><span class="line">  archiveprefix = {arXiv},</span><br><span class="line">  primaryclass  = {cs.CV}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">@inproceedings{NEURIPS2020_703957b6,</span><br><span class="line">  author    = {Zhuang, Tao and Zhang, Zhixuan and Huang, Yuheng and Zeng, Xiaoyi and Shuang, Kai and Li, Xiang},</span><br><span class="line">  booktitle = {Advances in Neural Information Processing Systems},</span><br><span class="line">  editor    = {H. Larochelle and M. Ranzato and R. Hadsell and M.F. Balcan and H. Lin},</span><br><span class="line">  pages     = {9865--9877},</span><br><span class="line">  publisher = {Curran Associates, Inc.},</span><br><span class="line">  title     = {Neuron-level Structured Pruning using Polarization Regularizer},</span><br><span class="line">  volume    = {33},</span><br><span class="line">  year      = {2020}</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">@article{标识符,</span><br><span class="line">    author  =   {{姓, 名 and 姓, 名 and ... and 姓, 名}},</span><br><span class="line">    title   =   {{论文标题}},</span><br><span class="line">    journal =   {{期刊名称}},</span><br><span class="line">    volume  =   {卷号},</span><br><span class="line">    number  =   {期号},</span><br><span class="line">    pages   =   {起始页码--终止页码},</span><br><span class="line">    year    =   {年份}</span><br><span class="line">}</span><br></pre></td></tr></table></figure> 在文章中如需应用，只需要<code>\cite{}</code>对应的标签即可。值得注意的有：</p>
+<ul>
+<li><code>.bib</code>文件中的所有标点符号必须是英文标点符号；</li>
+<li>诸如下划线<code>_</code>、与<code>&amp;</code>等特殊符号在使用时需要转义<code>\</code>；</li>
+<li><code>pages</code>字段使用双横杠<code>--</code>连接起始页码和终止页码。</li>
+</ul>
+<div class="tips">
+<p><strong>Tips</strong> 在终端中使用<code>texdoc gbt7714</code>可以快速调出<code>gbt7714</code>宏包文档，其中有非常多有用的信息，比如文献类型、自定义样式等内容。</p>
+</div>
+<h4 id="bibtex补充内容">1.2.2. BibTeX补充内容</h4>
+<h5 id="bibtex支持的条目类型">1.2.2.1. BibTeX支持的条目类型</h5>
+<ul>
+<li>article: 期刊或杂志上的文章</li>
+<li>conference: 会议论文</li>
+<li>inproceedings: 会议论文（与conference相同）</li>
+<li>book: 书籍</li>
+<li>booklet: 和book一样，但没有指定的出版商</li>
+<li>inbook: 书中的一章或一节</li>
+<li>incollection: 论文集中的文章</li>
+<li>manual: 技术手册</li>
+<li>masterthesis: 硕士论文</li>
+<li>phdthesis: 博士论文</li>
+<li>proceedings: 整个会议记录</li>
+<li>techreport: 技术报告，政府报告或白皮书</li>
+<li>unpublished: 尚未正式出版的作品</li>
+<li>misc: 如果没有其他合适的可以使用，则使用misc，如网址，邮件等</li>
+</ul>
+<h5 id="条目下全部的字段类型">1.2.2.2. 条目下全部的字段类型</h5>
+<ul>
+<li>title: 论文名称</li>
+<li>author: 作者名单</li>
+<li>journal: 文章发表的期刊或杂志名称</li>
+<li>booktitle: 书名，论文集的名称或会议名称</li>
+<li>month: 作品出版的月份</li>
+<li>year: 出版的年份</li>
+<li>volume: 卷号</li>
+<li>number: 报告号或期刊文章的刊号</li>
+<li>pages: 文章所在书籍或论文集中的页码或页范围</li>
+<li>address: 出版商地址或会议举办的地址</li>
+<li>organization: 组织或赞助会议或出版手册的机构名称，如 IEEE/ACM/Springer</li>
+<li>annote: 注释</li>
+<li>chapter: 书中的章节编号</li>
+<li>edition: 书的版本号</li>
+<li>editor: 书或者论文集的编辑名单</li>
+<li>howpublished: 特别出版物的出版通知</li>
+<li>institution: 发表及/或赞助报告的机构名称</li>
+<li>note: 关于参考文献的说明</li>
+<li>publisher: 出版社</li>
+<li>school: 大学或学位授予机构名称</li>
+<li>series: 丛书名</li>
+<li>type: 技术报告或论文的类型</li>
+</ul>
+<h5 id="非标准字段类型">1.2.2.3. 非标准字段类型</h5>
+<p>非标准字段类型经常使用，但并非所有BibTeX样式都支持。</p>
+<ul>
+<li>doi: DOI number (如10.1038/d41586-018-07848-2)</li>
+<li>issn: ISSN number (如1476-4687)</li>
+<li>isbn: ISBN number (如9780201896831)</li>
+<li>url: URL of a web page</li>
+</ul>
+<h2 id="推荐阅读">2. 推荐阅读</h2>
+<p><a target="_blank" rel="noopener" href="https://mirrors.hit.edu.cn/CTAN/macros/latex/contrib/algorithm2e/doc/algorithm2e.pdf">algorithm2e.sty — package for algorithms</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/618711187">Latex -- Algorithm算法流程图</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/98982582">IEEE 论文的参考文献格式(bib)</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2023/06/25/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/Mathematica%E6%BF%80%E6%B4%BB%E6%8C%87%E5%8D%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1032,100 +1175,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2022/11/24/%E6%95%B0%E5%AD%A6/Calibration-of-monocular-camera/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/214+308_2_pi.png">
-      <meta itemprop="name" content="eksnew">
-      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="eksnew's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/11/24/%E6%95%B0%E5%AD%A6/Calibration-of-monocular-camera/" class="post-title-link" itemprop="url">单目相机的标定原理</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2022-11-24 15:58:16" itemprop="dateCreated datePublished" datetime="2022-11-24T15:58:16+08:00">2022-11-24</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-21 21:03:11" itemprop="dateModified" datetime="2024-03-21T21:03:11+08:00">2024-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近在学习单目相机的标定方法，现将资料整理如下。</p>
-<hr>
-<h2 id="为什么要进行相机标定与畸变矫正">1. 为什么要进行相机标定与畸变矫正</h2>
-<!-- **（写的太好了，所以本小节直接援引原博客）** -->
-<blockquote>
-<p>“在拍照时，其实我们仅仅是得到了一坨感兴趣的像素而已，究竟要怎样才能把这些像素转化到现实世界的对象中呢？也就是说要怎样对这些仅存在于图像中的东西进行测量，才能得到具有实际意义和尺度的数据呢？这个时候我们就懵逼了，而摄像机标定的存在意义就是解决这个问题。”</p>
-</blockquote>
-<p>通过摄像机标定我们可以知道:</p>
-<ol type="1">
-<li>外参数矩阵。告诉你现实世界点（世界坐标）是怎样经过旋转和平移，然后落到另一个现实世界点（摄像机坐标）上；</li>
-<li>内参数矩阵。告诉你上述那个点在 1 的基础上，是如何继续经过摄像机的镜头、并通过针孔成像和电子转化而成为像素点的；</li>
-<li>畸变矩阵。告诉你为什么上面那个像素点并没有落在理论计算该落在的位置上，并产生了一定的偏移和变形。</li>
-</ol>
-<hr>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/11/24/%E6%95%B0%E5%AD%A6/Calibration-of-monocular-camera/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1197,7 +1246,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
