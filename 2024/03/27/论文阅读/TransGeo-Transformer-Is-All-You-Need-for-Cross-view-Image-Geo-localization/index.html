@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://eksnew.github.io/2024/03/27/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/TransGeo-Transformer-Is-All-You-Need-for-Cross-view-Image-Geo-localization/architecture.png">
 <meta property="og:image" content="https://eksnew.github.io/2024/03/27/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/TransGeo-Transformer-Is-All-You-Need-for-Cross-view-Image-Geo-localization/non_uniform_cropping.png">
 <meta property="article:published_time" content="2024-03-27T06:22:00.000Z">
-<meta property="article:modified_time" content="2024-03-27T13:47:30.014Z">
+<meta property="article:modified_time" content="2024-03-28T12:09:45.810Z">
 <meta property="article:author" content="eksnew">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eksnew.github.io/2024/03/27/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/TransGeo-Transformer-Is-All-You-Need-for-Cross-view-Image-Geo-localization/architecture.png">
@@ -297,10 +297,16 @@ mjx-container[display="true"] + br {
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2024-03-27 14:22:00 / Modified: 21:47:30" itemprop="dateCreated datePublished" datetime="2024-03-27T14:22:00+08:00">2024-03-27</time>
+              <time title="Created: 2024-03-27 14:22:00" itemprop="dateCreated datePublished" datetime="2024-03-27T14:22:00+08:00">2024-03-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-03-28 20:09:45" itemprop="dateModified" datetime="2024-03-28T20:09:45+08:00">2024-03-28</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -334,6 +340,7 @@ mjx-container[display="true"] + br {
 <p>提出了一种不依赖极坐标变换、还比CNN快的Transformer-based方法。</p>
 <h2 id="模型与方法论">3. 模型与方法论</h2>
 <h3 id="模型结构">3.1. 模型结构</h3>
+<span id="more"></span>
 <div style="width:80%;margin:auto">
 <img src="/2024/03/27/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/TransGeo-Transformer-Is-All-You-Need-for-Cross-view-Image-Geo-localization/architecture.png" class title="TransGeo结构图">
 </div>
@@ -345,10 +352,10 @@ mjx-container[display="true"] + br {
 <div class="tips">
 <p>原文的公式排版也太丑了，CVPR的质量不会这样吧？</p>
 </div>
-<blockquote>
+<div class="tips">
 <p><strong>什么是Soft-margin triplet loss？</strong> Soft-margin triplet loss的目标是最大化正样本和锚定样本之间的距离，并最小化负样本和锚定样本之间的距离，同时保持一定的间隔，以确保模型学到的特征表示具有良好的区分性和泛化能力。</p>
 <p>与传统的triplet loss相比，soft-margin triplet loss引入了一个软边界(soft-margin)，允许在一定程度上容忍一些负样本和锚定样本之间的距离小于正样本和锚定样本之间的距离。这种损失函数的设计可以在一定程度上提高模型的稳定性和泛化能力，避免了传统triplet loss中容易出现的样本选择问题和梯度消失问题。</p>
-</blockquote>
+</div>
 <h4 id="stage-2">3.1.2. Stage 2</h4>
 <p>Stage 2中TransGeo以鸟瞰图的自注意力图像作为指导，进行非均匀裁剪(Non-uniform Cropping)。</p>
 <div style="width:80%;margin:auto">
