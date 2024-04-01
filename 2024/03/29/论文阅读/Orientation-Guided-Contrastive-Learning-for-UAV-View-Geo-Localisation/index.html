@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.1.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"eksnew.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Orientation-Guided Contrastive Learning for UAV-View Geo-Localisation">
+<meta property="og:url" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/index.html">
+<meta property="og:site_name" content="eksnew&#39;s Blog">
+<meta property="og:description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png">
+<meta property="article:published_time" content="2024-03-29T12:37:01.000Z">
+<meta property="article:modified_time" content="2024-04-01T09:53:06.231Z">
+<meta property="article:author" content="eksnew">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png">
+
+<link rel="canonical" href="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>Orientation-Guided Contrastive Learning for UAV-View Geo-Localisation | eksnew's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">eksnew's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/214+308_2_pi.png">
+      <meta itemprop="name" content="eksnew">
+      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eksnew's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Orientation-Guided Contrastive Learning for UAV-View Geo-Localisation
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-03-29 20:37:01" itemprop="dateCreated datePublished" datetime="2024-03-29T20:37:01+08:00">2024-03-29</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-04-01 17:53:06" itemprop="dateModified" datetime="2024-04-01T17:53:06+08:00">2024-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>原来localisation是localization的英式写法。</p>
+<p>State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。</p>
+<h2 id="引入">1. 引入</h2>
+<h3 id="what-to-do">1.1. What to do</h3>
+<p>提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了一个轻量级预测模块，它根据对比学习的嵌入来预测不同视图之间的方向。 提取的伪标签还使得卫星图像的对齐旋转成为增强方法，进一步加强了模型的泛化能力。 因为推理过程中不再需要这个方向模块，所以相较Sample4Geo没有额外的计算。</p>
+<span id="more"></span>
+<h2 id="模型与方法论">2. 模型与方法论</h2>
+<h3 id="分层定位">2.1. 分层定位</h3>
+<p>该方法的第一阶段必须估计无人机视图的方向，为此模型使用了分层定位技术(hierarchical localisation technique, HLOC)。</p>
+<ul>
+<li>首先使用预训练的CNN生成图像的全局描述符(global descriptor)，这些描述符捕捉了图像的整体特征；</li>
+<li>在全局描述符上，使用k最近邻方法对图像进行粗略排序。排序后的图像被称为先验帧，代表场景的候选位置；</li>
+<li>根据结构化光流(Structure-from Motion, SfM)生成图像的3D结构对先验帧进行聚类，以将它们分组成不同的位置。</li>
+</ul>
+<p>另外：</p>
+<ul>
+<li>由于全局特征通常过于粗糙，因此还需要提取局部特征。模型使用SuperPoint方法来提取局部特征。然后在每个位置的图像集群中对局部特征进行匹配，并使用PnP算法估计图像之间的6-DoF姿态。</li>
+<li>由于存在离群值，为了增加估计的稳健性，模型还采用了RANSAC算法进行姿态估计。</li>
+</ul>
+<p>为了预测方向，模型使用卫星图像作为anchor，并根据3D坐标的角度为每个无人机视图分配一个伪标签。 模型的整体结构如下：</p>
+<div style="width:80%;margin:auto">
+<img src="/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png" class title="模型结构图">
+</div>
+<p>如上图左侧所示，通过估计转换矩阵，可以重建拍摄照片时相机的路径，而且这些转换矩阵描述了无人机视角相对于卫星图像的位置和方向。 为了生成伪对齐标签，模型将卫星图像的坐标设为原点，计算每个无人机视图与卫星视图之间的角度。然后利用估计的角度将图像分成<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewbox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g></g></g></svg></mjx-container></span>个区间，每个区间<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewbox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container></span>度。</p>
+<p>在训练过程中模型使用卫星和无人机视图的embeddings预测伪标签，在推理阶段则不需要这些权重。</p>
+<h3 id="其他细节">2.2. 其他细节</h3>
+<h4 id="损失函数">2.2.1. 损失函数</h4>
+<p>使用的InfoNCE损失函数是一种对比损失(contrastive loss)，用于将每个正样本与批次中的所有其他负样本进行对比。 然而，如果一个批次中有两个或更多相同建筑物的无人机视图，则会引入标签噪声。 为了避免这种情况，模型每次只将一个建筑物的无人机视图采样到一个批次中。</p>
+<h4 id="数据增强">2.2.2. 数据增强</h4>
+<p>除了前述的对齐旋转，模型还使用了颜色抖动、粗糙丢弃、高斯模糊和图像锐化等数据增强方法。 这些增强技术有助于提高模型的泛化能力和鲁棒性。</p>
+<h4 id="模型训练">2.2.3. 模型训练</h4>
+<p>训练阶段，模型在卫星和无人机视图分支的输出特征上连接了一个轻量级线性层，用于预测生成的方向标签。 这个轻量级线性层在推断阶段不使用，因此与之前的方法相比不需要额外的计算资源。</p>
+<h2 id="结果">3. 结果</h2>
+<h2 id="可参考的资料">4. 可参考的资料</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/2308.00982">Orientation-Guided Contrastive Learning for UAV-View Geo-Localisation - arXiv</a></li>
+</ol>
+<p>[[Sample4Geo-Hard-Negative-Sampling-For-Cross-View-Geo-Localisation]]</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2024/03/27/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/TransFG-A-Cross-View-Geo-Localization-of-Satellite-and-UAVs-Imagery-Pipeline-Using-Transformer-Based-Feature-Aggregation-and-Gradient-Guidance/" rel="prev" title="TransFG: A Cross-View Geo-Localization of Satellite and UAVs Imagery Pipeline Using Transformer-Based Feature Aggregation and Gradient Guidance">
+      <i class="fa fa-chevron-left"></i> TransFG: A Cross-View Geo-Localization of Satellite and UAVs Imagery Pipeline Using Transformer-Based Feature Aggregation and Gradient Guidance
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Sample4Geo-Hard-Negative-Sampling-For-Cross-View-Geo-Localisation/" rel="next" title="Sample4Geo: Hard Negative Sampling For Cross-View Geo-Localisation">
+      Sample4Geo: Hard Negative Sampling For Cross-View Geo-Localisation <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E5%85%A5"><span class="nav-text">1. 引入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#what-to-do"><span class="nav-text">1.1. What to do</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA"><span class="nav-text">2. 模型与方法论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B1%82%E5%AE%9A%E4%BD%8D"><span class="nav-text">2.1. 分层定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E7%BB%86%E8%8A%82"><span class="nav-text">2.2. 其他细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0"><span class="nav-text">2.2.1. 损失函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-text">2.2.2. 数据增强</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83"><span class="nav-text">2.2.3. 模型训练</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C"><span class="nav-text">3. 结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%8F%82%E8%80%83%E7%9A%84%E8%B5%84%E6%96%99"><span class="nav-text">4. 可参考的资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="eksnew"
+      src="/images/214+308_2_pi.png">
+  <p class="site-author-name" itemprop="name">eksnew</p>
+  <div class="site-description" itemprop="description">A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">eksnew</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>
