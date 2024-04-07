@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"eksnew.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了">
+  <meta name="description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊、未开源代码。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Orientation-Guided Contrastive Learning for UAV-View Geo-Localisation">
 <meta property="og:url" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/index.html">
 <meta property="og:site_name" content="eksnew&#39;s Blog">
-<meta property="og:description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了">
+<meta property="og:description" content="原来localisation是localization的英式写法。 State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊、未开源代码。 1. 引入 1.1. What to do 提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png">
 <meta property="article:published_time" content="2024-03-29T12:37:01.000Z">
-<meta property="article:modified_time" content="2024-04-01T09:53:06.231Z">
+<meta property="article:modified_time" content="2024-04-07T07:11:49.386Z">
 <meta property="article:author" content="eksnew">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://eksnew.github.io/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png">
@@ -304,7 +304,7 @@ mjx-container[display="true"] + br {
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-04-01 17:53:06" itemprop="dateModified" datetime="2024-04-01T17:53:06+08:00">2024-04-01</time>
+                <time title="Modified: 2024-04-07 15:11:49" itemprop="dateModified" datetime="2024-04-07T15:11:49+08:00">2024-04-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -328,7 +328,7 @@ mjx-container[display="true"] + br {
 
       
         <p>原来localisation是localization的英式写法。</p>
-<p>State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊。</p>
+<p>State-of-the-art Drone-view target localization on University-1652 as of 24.3.29. 目前未见刊、未开源代码。</p>
 <h2 id="引入">1. 引入</h2>
 <h3 id="what-to-do">1.1. What to do</h3>
 <p>提出了一种以方向为导向的训练框架。通过对无人机图像的分层定位，可以估计其与卫星图像的方向关系。 提出了一个轻量级预测模块，它根据对比学习的嵌入来预测不同视图之间的方向。 提取的伪标签还使得卫星图像的对齐旋转成为增强方法，进一步加强了模型的泛化能力。 因为推理过程中不再需要这个方向模块，所以相较Sample4Geo没有额外的计算。</p>
@@ -337,20 +337,45 @@ mjx-container[display="true"] + br {
 <h3 id="分层定位">2.1. 分层定位</h3>
 <p>该方法的第一阶段必须估计无人机视图的方向，为此模型使用了分层定位技术(hierarchical localisation technique, HLOC)。</p>
 <ul>
-<li>首先使用预训练的CNN生成图像的全局描述符(global descriptor)，这些描述符捕捉了图像的整体特征；</li>
+<li>首先使用预训练的CNN生成图像的全局描述符(Global Descriptor)，这些描述符捕捉了图像的整体特征；</li>
 <li>在全局描述符上，使用k最近邻方法对图像进行粗略排序。排序后的图像被称为先验帧，代表场景的候选位置；</li>
 <li>根据结构化光流(Structure-from Motion, SfM)生成图像的3D结构对先验帧进行聚类，以将它们分组成不同的位置。</li>
 </ul>
+<div class="tips">
+<p><strong>SfM(Structure from Motion)</strong>是一种计算机视觉技术，用于从一系列二维图像中重构三维场景的几何结构。 它通过分析图像中的特征点及其在不同图像中的对应关系，来推断出场景中的相机姿态、特征点的三维位置以及场景的结构。 SfM本身并不是一种深度学习方法，而是一种传统的计算机视觉技术，主要基于几何原理和特征匹配来恢复三维场景的结构和相机的运动。</p>
+<p>SfM的核心思想是通过分析多个二维图像中的特征点及其在不同图像中的对应关系，推断出场景中的三维结构和相机的运动轨迹。 这个过程通常不涉及深度学习模型，而是使用几何计算和优化方法来实现。</p>
+</div>
 <p>另外：</p>
 <ul>
 <li>由于全局特征通常过于粗糙，因此还需要提取局部特征。模型使用SuperPoint方法来提取局部特征。然后在每个位置的图像集群中对局部特征进行匹配，并使用PnP算法估计图像之间的6-DoF姿态。</li>
 <li>由于存在离群值，为了增加估计的稳健性，模型还采用了RANSAC算法进行姿态估计。</li>
 </ul>
+<div class="tips">
+<p><strong>PnP(Perspective-n-Point)</strong>算法是用于从图像特征点估计相机的姿态（通常是相机的旋转和平移）的一类算法， 常被用于计算机视觉中的结构光、SLAM、三维重建等应用中。</p>
+<p>PnP算法的输入通常包括三维世界坐标系中的一组三维点（通常称为世界坐标点）以及它们在图像中对应的二维像素坐标点。 这些像素坐标点通常是由特征点检测器（如 SIFT、SURF、ORB等）提取并匹配得到的。PnP算法的目标是根据这些匹配的特征点，估计相机的旋转和平移矩阵，从而将三维世界坐标系映射到图像的二维像素坐标系中。</p>
+</div>
+<div class="tips">
+<p><strong>6-DoF(Degrees of Freedom)</strong>姿态指的是在三维空间中物体的位置和方向，通常用六个独立的参数来描述。 这六个参数包括了三个平移自由度（在三个轴上的位移）和三个旋转自由度（绕三个轴的旋转），描述了物体在三维空间中的运动状态。 六个自由度可以分为以下几个方面：</p>
+<ul>
+<li>平移自由度：
+<ul>
+<li>沿 x 轴的位移（前后移动）</li>
+<li>沿 y 轴的位移（左右移动）</li>
+<li>沿 z 轴的位移（上下移动）</li>
+</ul></li>
+<li>旋转自由度：
+<ul>
+<li>绕 x 轴的旋转（俯仰）</li>
+<li>绕 y 轴的旋转（偏航）</li>
+<li>绕 z 轴的旋转（滚转） 这种描述方式常用于机器人学、计算机图形学、虚拟现实、增强现实等领域，用来描述物体的姿态或相机的姿态。例如，在计算机视觉中，常常使用六个自由度的姿态来描述相机相对于场景的位置和方向，以便进行相机位姿估计、目标跟踪等任务。</li>
+</ul></li>
+</ul>
+</div>
 <p>为了预测方向，模型使用卫星图像作为anchor，并根据3D坐标的角度为每个无人机视图分配一个伪标签。 模型的整体结构如下：</p>
 <div style="width:80%;margin:auto">
 <img src="/2024/03/29/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Orientation-Guided-Contrastive-Learning-for-UAV-View-Geo-Localisation/architecture.png" class title="模型结构图">
 </div>
-<p>如上图左侧所示，通过估计转换矩阵，可以重建拍摄照片时相机的路径，而且这些转换矩阵描述了无人机视角相对于卫星图像的位置和方向。 为了生成伪对齐标签，模型将卫星图像的坐标设为原点，计算每个无人机视图与卫星视图之间的角度。然后利用估计的角度将图像分成<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewbox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g></g></g></svg></mjx-container></span>个区间，每个区间<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewbox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container></span>度。</p>
+<p>如上图左侧所示，通过估计转换矩阵可以重建拍摄照片时相机的路径，而且这些转换矩阵描述了无人机视角相对于卫星图像的位置和方向。 为了生成伪对齐标签， 模型将卫星图像的坐标设为原点，计算每个无人机视图与卫星视图之间的角度，然后利用估计的角度将图像分成<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="0.971ex" height="1.595ex" role="img" focusable="false" viewbox="0 -694 429 705"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D44F" d="M73 647Q73 657 77 670T89 683Q90 683 161 688T234 694Q246 694 246 685T212 542Q204 508 195 472T180 418L176 399Q176 396 182 402Q231 442 283 442Q345 442 383 396T422 280Q422 169 343 79T173 -11Q123 -11 82 27T40 150V159Q40 180 48 217T97 414Q147 611 147 623T109 637Q104 637 101 637H96Q86 637 83 637T76 640T73 647ZM336 325V331Q336 405 275 405Q258 405 240 397T207 376T181 352T163 330L157 322L136 236Q114 150 114 114Q114 66 138 42Q154 26 178 26Q211 26 245 58Q270 81 285 114T318 219Q336 291 336 325Z"/></g></g></g></svg></mjx-container></span>个区间，每个区间<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.025ex;" xmlns="http://www.w3.org/2000/svg" width="1.294ex" height="1.025ex" role="img" focusable="false" viewbox="0 -442 572 453"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"/></g></g></g></svg></mjx-container></span>度。 最后在对比训练期间用作伪标签。</p>
 <p>在训练过程中模型使用卫星和无人机视图的embeddings预测伪标签，在推理阶段则不需要这些权重。</p>
 <h3 id="其他细节">2.2. 其他细节</h3>
 <h4 id="损失函数">2.2.1. 损失函数</h4>
@@ -461,7 +486,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">36</span>
+          <span class="site-state-item-count">37</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
