@@ -269,6 +269,209 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/03/12/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/214+308_2_pi.png">
+      <meta itemprop="name" content="eksnew">
+      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eksnew's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/03/12/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows/" class="post-title-link" itemprop="url">Swin Transformer: Hierarchical Vision Transformer using Shifted Windows</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-03-12 20:11:39" itemprop="dateCreated datePublished" datetime="2024-03-12T20:11:39+08:00">2024-03-12</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-03-21 21:01:33" itemprop="dateModified" datetime="2024-03-21T21:01:33+08:00">2024-03-21</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/" itemprop="url" rel="index"><span itemprop="name">论文阅读</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>ICCV 2021的Best Paper。一篇有年头的文章，但经典值得一读。</p>
+<div class="tips">
+<p><strong>简单总结</strong> 借鉴了许多过往CNN网络里的设计理念，将CNN与Transformer进行了完美结合。</p>
+</div>
+<h2 id="引入">1. 引入</h2>
+<p>期望构建一个视觉中通用的backbone，证明Transformer在视觉领域的作用。</p>
+<h3 id="难点">1.1. 难点</h3>
+<p>Transformer从NLP转移到CV领域具有挑战性：</p>
+<ul>
+<li>最小尺寸（感觉不是这个意思，有待阅读相关文献）。不同于单词，图像像素是很多的，这意味着可选择的最小尺寸很多。而现有Transformer-based架构中token的尺寸是固定的，这并不适合CV。</li>
+<li>图像分辨率。如语义分割的视觉任务中，高分辨率图像在Transformer中不好处理，因为自注意力的计算复杂度与图像尺寸呈二次关系。 当输入图片尺寸稍大，计算复杂度就变得难以接受了。</li>
+</ul>
+<h3 id="what-to-do">1.2. What to do</h3>
+<p>提出一种新backbone，能构建分层的特征图且计算复杂度与图像尺寸呈线性关系。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/03/12/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/03/11/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/PyTorch-Note-Datasets-and-DataLoaders/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/214+308_2_pi.png">
+      <meta itemprop="name" content="eksnew">
+      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="eksnew's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/03/11/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/PyTorch-Note-Datasets-and-DataLoaders/" class="post-title-link" itemprop="url">PyTorch笔记 [1] 数据加载</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2024-03-11 21:02:17" itemprop="dateCreated datePublished" datetime="2024-03-11T21:02:17+08:00">2024-03-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2024-05-13 19:37:54" itemprop="dateModified" datetime="2024-05-13T19:37:54+08:00">2024-05-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/" itemprop="url" rel="index"><span itemprop="name">零散知识</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近看一些论文的源码实现时发现自己Python、PyTorch水平不高，现在打算每日抽一小时细学一下，希望能顺别掌握<code>timm</code>库的用法。 因为在同时写多篇笔记，估计这篇草稿会最先发出来，因此后续有关PyTorch笔记的整体介绍都会放在此处。</p>
+<p>PyTorch的数据加载主要依靠<code>torch.utils.data.Dataset</code>与<code>torch.utils.data.DataLoader</code>。 通过前者的实现可以封装自己的数据集和标签，通过后者的实现可以达到数据的划分。 使用自己的数据集时一般先继承<code>torch.utils.data.Dataset</code>， 这个自定义的数据集类须重写<code>__init__</code>、<code>__len__</code>和<code>__getitem__</code>方法。</p>
+<h2 id="torch.utils.data.dataset及其实现细节">1. torch.utils.data.Dataset及其实现细节</h2>
+<h3 id="源码解读">1.1. 源码解读</h3>
+<p>源码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Dataset</span>(<span class="type">Generic</span>[T_co]):</span><br><span class="line">    <span class="string">r&quot;&quot;&quot;An abstract class representing a :class:`Dataset`.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    All datasets that represent a map from keys to data samples should subclass</span></span><br><span class="line"><span class="string">    it. All subclasses should overwrite :meth:`__getitem__`, supporting fetching a</span></span><br><span class="line"><span class="string">    data sample for a given key. Subclasses could also optionally overwrite</span></span><br><span class="line"><span class="string">    :meth:`__len__`, which is expected to return the size of the dataset by many</span></span><br><span class="line"><span class="string">    :class:`~torch.utils.data.Sampler` implementations and the default options</span></span><br><span class="line"><span class="string">    of :class:`~torch.utils.data.DataLoader`. Subclasses could also</span></span><br><span class="line"><span class="string">    optionally implement :meth:`__getitems__`, for speedup batched samples</span></span><br><span class="line"><span class="string">    loading. This method accepts list of indices of samples of batch and returns</span></span><br><span class="line"><span class="string">    list of samples.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    .. note::</span></span><br><span class="line"><span class="string">      :class:`~torch.utils.data.DataLoader` by default constructs a index</span></span><br><span class="line"><span class="string">      sampler that yields integral indices.  To make it work with a map-style</span></span><br><span class="line"><span class="string">      dataset with non-integral indices/keys, a custom sampler must be provided.</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, index</span>) -&gt; T_co:</span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError(<span class="string">&quot;Subclasses of Dataset should implement __getitem__.&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># def __getitems__(self, indices: List) -&gt; List[T_co]:</span></span><br><span class="line">    <span class="comment"># Not implemented to prevent false-positives in fetcher check in</span></span><br><span class="line">    <span class="comment"># torch.utils.data._utils.fetch._MapDatasetFetcher</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__add__</span>(<span class="params">self, other: <span class="string">&#x27;Dataset[T_co]&#x27;</span></span>) -&gt; <span class="string">&#x27;ConcatDataset[T_co]&#x27;</span>:</span><br><span class="line">        <span class="keyword">return</span> ConcatDataset([self, other])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># No `def __len__(self)` default?</span></span><br><span class="line">    <span class="comment"># See NOTE [ Lack of Default `__len__` in Python Abstract Base Classes ]</span></span><br><span class="line">    <span class="comment"># in pytorch/torch/utils/data/sampler.py</span></span><br></pre></td></tr></table></figure>
+<p><code>Generic[T_co]</code>是一个泛型类型注解，用于指示<code>Dataset</code>是一个泛型类，泛型参数为<code>T_co</code>。</p>
+<p>如果我写了的话，这里会留一个泛型类的笔博文链接。</p>
+<h3 id="方法重写">1.2. 方法重写</h3>
+<ul>
+<li><p><code>__init__</code> 干一些拿数据、初始化的各种杂活。</p></li>
+<li><p><code>__len__</code> 返回数据集的大小，方便DataLoader进行划分，否则易出错。</p></li>
+<li><p><code>__getitem__</code> 最主要的方法，需要实现通过给定索引获取对应数据。</p></li>
+</ul>
+<div class="tips">
+<p>简单地说，<code>__getitem__</code>作用就是让自己的数据集类能像<code>list</code>一样通过索引进行访问。</p>
+</div>
+<h3 id="自定义数据集官方样例">1.3. 自定义数据集官方样例</h3>
+<p>官方样例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> torchvision.io <span class="keyword">import</span> read_image</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CustomImageDataset</span>(<span class="title class_ inherited__">Dataset</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, annotations_file, img_dir, transform=<span class="literal">None</span>, target_transform=<span class="literal">None</span></span>):</span><br><span class="line">        self.img_labels = pd.read_csv(annotations_file)</span><br><span class="line">        self.img_dir = img_dir</span><br><span class="line">        self.transform = transform</span><br><span class="line">        self.target_transform = target_transform</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__len__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self.img_labels)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__getitem__</span>(<span class="params">self, idx</span>):</span><br><span class="line">        img_path = os.path.join(self.img_dir, self.img_labels.iloc[idx, <span class="number">0</span>])</span><br><span class="line">        image = read_image(img_path)</span><br><span class="line">        label = self.img_labels.iloc[idx, <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> self.transform:</span><br><span class="line">            image = self.transform(image)</span><br><span class="line">        <span class="keyword">if</span> self.target_transform:</span><br><span class="line">            label = self.target_transform(label)</span><br><span class="line">        <span class="keyword">return</span> image, label</span><br></pre></td></tr></table></figure>
+<p><code>__getitem__</code>方法返回的两个变量用途如下：</p>
+<ul>
+<li><code>image</code>：这是加载的图像数据，通常是一个Tensor，在 PyTorch 中表示为 <code>torch.Tensor</code>。这个图像数据通常会在模型中被用作输入，用于进行训练或推断。</li>
+<li><code>label</code>：这是与 <code>image</code> 相关联的图像名称或标识符。它可能是图像文件的名称、图像的唯一标识符等。通常，它用于跟踪数据，例如在模型输出中与输入数据对应。在训练过程中，也可以用于记录日志、生成可视化结果或评估模型性能。</li>
+</ul>
+<h2 id="torch.utils.data.dataloader">2. torch.utils.data.DataLoader</h2>
+<p>在上述实现后，我们可以简单地通过<code>for</code>循环进行数据集迭代，但如数据批处理、乱序排列数据、并行加载数据（数据集很大时有用）等的特性无法实现。 那么现在就要用到<code>torch.utils.data.DataLoader</code>实现对数据集的操作了。</p>
+<h3 id="dataloader官方样例">2.1. DataLoader官方样例</h3>
+<p>结合了ChatGPT的样例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"></span><br><span class="line">dataset = CustomImageDataset(root_dir=<span class="string">&#x27;path/to/root&#x27;</span>,</span><br><span class="line">                        query_images=[<span class="string">&#x27;img1.jpg&#x27;</span>, <span class="string">&#x27;img2.jpg&#x27;</span>, ...],</span><br><span class="line">                        query_images_path=<span class="string">&#x27;path/to/query/images&#x27;</span>,</span><br><span class="line">                        transform=transform,</span><br><span class="line">                        rotate=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line">train_dataloader = DataLoader(training_data, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line">test_dataloader = DataLoader(test_data, batch_size=<span class="number">64</span>, shuffle=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Display image and label.</span></span><br><span class="line">train_features, train_labels = <span class="built_in">next</span>(<span class="built_in">iter</span>(train_dataloader))</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Feature batch shape: <span class="subst">&#123;train_features.size()&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Labels batch shape: <span class="subst">&#123;train_labels.size()&#125;</span>&quot;</span>)</span><br><span class="line">img = train_features[<span class="number">0</span>].squeeze()</span><br><span class="line">label = train_labels[<span class="number">0</span>]</span><br><span class="line">plt.imshow(img, cmap=<span class="string">&quot;gray&quot;</span>)</span><br><span class="line">plt.show()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Label: <span class="subst">&#123;label&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用数据加载器迭代数据</span></span><br><span class="line"><span class="keyword">for</span> batch_idx, (images, names) <span class="keyword">in</span> <span class="built_in">enumerate</span>(dataloader):</span><br><span class="line">    <span class="comment"># 在这里进行模型的训练或其他操作</span></span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+<h2 id="可供参考的资料">3. 可供参考的资料</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/basics/data_tutorial.html">Datasets &amp; DataLoaders</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33431368/article/details/105463045">带你详细了解并使用Dataset以及DataLoader</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/639275063">Dataset和DataLoader加载数据集(Pytorch)</a></li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/03/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Masked-Autoencoders-Are-Scalable-Vision-Learners/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1169,168 +1372,6 @@ mjx-container[display="true"] + br {
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2023/10/03/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Configuring-OpenGL-in-Visual-Studio-2022/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/214+308_2_pi.png">
-      <meta itemprop="name" content="eksnew">
-      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="eksnew's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/10/03/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Configuring-OpenGL-in-Visual-Studio-2022/" class="post-title-link" itemprop="url">Visual Studio 2022配置OpenGL</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-10-03 23:37:22" itemprop="dateCreated datePublished" datetime="2023-10-03T23:37:22+08:00">2023-10-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-21 21:04:01" itemprop="dateModified" datetime="2024-03-21T21:04:01+08:00">2024-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">各类配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>最近选了门《虚拟现实技术》，本以为是门水课，没想到刚过退改选就掏出了OpenGL大作业...唉，又勾起了大四《计算机图形学》配置OpenGL的惨痛回忆，现开一文简单记录如何配置。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/10/03/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Configuring-OpenGL-in-Visual-Studio-2022/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2023/09/17/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Setting-up-categories-and-tags-in-Hexo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/214+308_2_pi.png">
-      <meta itemprop="name" content="eksnew">
-      <meta itemprop="description" content="A student, a beginner, and someone who wants to learn how to draw but has never actually tried it.">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="eksnew's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/17/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Setting-up-categories-and-tags-in-Hexo/" class="post-title-link" itemprop="url">Hexo（三）：Hexo的categories与tags</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2023-09-17 21:22:10" itemprop="dateCreated datePublished" datetime="2023-09-17T21:22:10+08:00">2023-09-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-21 21:04:06" itemprop="dateModified" datetime="2024-03-21T21:04:06+08:00">2024-03-21</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/" itemprop="url" rel="index"><span itemprop="name">各类配置</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>本来想偷懒不配置categories的，但随着文(shui)章(wen)数量的增多，再不配置categories我自己都要找不到笔记了...故开此文。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2023/09/17/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Setting-up-categories-and-tags-in-Hexo/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1402,7 +1443,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">39</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
