@@ -317,55 +317,43 @@ mjx-container[display="true"] + br {
 
       
         <p>以此记录刷LeetCode过程中的一些tricks。</p>
-<h2 id="optimizing-sliding-window-with-frequency-tracking">1. Optimizing
-Sliding Window with Frequency Tracking</h2>
-<h3 id="common-mistake">1.1. Common Mistake</h3>
+<h2 id="Optimizing-Sliding-Window-with-Frequency-Tracking">1. Optimizing Sliding Window with Frequency Tracking</h2>
+<h3 id="Common-Mistake">1.1. Common Mistake</h3>
 <span id="more"></span>
-<p>Using a <code>set</code> to check for duplicates within a sliding
-window can result in inefficiencies, especially when working with large
-datasets. Here's an example of the wrong way to implement this:</p>
+<p>Using a <code>set</code> to check for duplicates within a sliding window can result in inefficiencies, especially when working with large datasets.<br>
+Here’s an example of the wrong way to implement this:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_function</span>():</span><br><span class="line">    ...</span><br><span class="line">    <span class="comment"># Check if all elements in the window are unique</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(<span class="built_in">set</span>(nums[Lpt:Rpt])) == self.length:</span><br><span class="line">        ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p>While this approach works, it recalculates the set every time, which
-can be computationally expensive. Instead, we can optimize this by
-tracking the frequency of elements dynamically.</p>
-<h3 id="correct-approachs">1.2. Correct Approachs</h3>
-<h4 id="using-collections.counter">1.2.1. Using
-collections.Counter</h4>
-<p>The Counter class from Python's collections module is an efficient
-way to track the frequency of elements in the sliding window. Here's an
-optimized implementation:</p>
+<p>While this approach works, it recalculates the set every time, which can be computationally expensive.<br>
+Instead, we can optimize this by tracking the frequency of elements dynamically.</p>
+<h3 id="Correct-Approachs">1.2. Correct Approachs</h3>
+<h4 id="Using-collections-Counter">1.2.1. Using collections.Counter</h4>
+<p>The Counter class from Python’s collections module is an efficient way to track the frequency of elements in the sliding window.<br>
+Here’s an optimized implementation:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_function</span>():</span><br><span class="line">        freq = Counter()  <span class="comment"># Initialize a Counter for tracking frequencies</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># Check if the window has all unique elements</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(freq) == self.length:</span><br><span class="line">            ...</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># Remove the frequency of the leftmost element</span></span><br><span class="line">        freq[nums[Lpt]] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> freq[nums[Lpt]] == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">del</span> freq[nums[Lpt]]  <span class="comment"># Remove element when its frequency reaches 0</span></span><br><span class="line">        <span class="comment"># Add the frequency of the rightmost element</span></span><br><span class="line">        freq[nums[Rpt]] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h4 id="implement-it-by-ourself">1.2.2. Implement it by ourself</h4>
-<p>We can also implement the frequency tracking manually with a
-dictionary:</p>
+<h4 id="Implement-it-by-ourself">1.2.2. Implement it by ourself</h4>
+<p>We can also implement the frequency tracking manually with a dictionary:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_function</span>():</span><br><span class="line">        freq = {}  <span class="comment"># Dictionary to track the frequency of elements</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># Check if the window has all unique elements</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(freq) == self.length:</span><br><span class="line">            ...</span><br><span class="line">        ...</span><br><span class="line">        <span class="comment"># Remove the frequency of the leftmost element</span></span><br><span class="line">        freq[nums[Lpt]] -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> freq[nums[Lpt]] == <span class="number">0</span>:</span><br><span class="line">            <span class="keyword">del</span> freq[nums[Lpt]]  <span class="comment"># Remove element when its frequency reaches 0</span></span><br><span class="line">        <span class="comment"># Add the frequency of the rightmost element</span></span><br><span class="line">        freq[nums[Rpt]] = freq.get(nums[Rpt], <span class="number">0</span>) + <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<h3 id="analysis">1.3. Analysis</h3>
+<h3 id="Analysis">1.3. Analysis</h3>
 <p>Why it works:</p>
-<ul>
-<li>Efficiency. Both approaches dynamically update the frequency map,
-ensuring that we only maintain what’s currently in the sliding window.
-This eliminates the need to repeatedly recreate a set for every window
-update.</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>Efficiency.<br>
+Both approaches dynamically update the frequency map, ensuring that we only maintain what’s currently in the sliding window.<br>
+This eliminates the need to repeatedly recreate a set for every window update.</p>
+</li>
 </ul>
-<h2 id="difference-array">2. Difference Array</h2>
-<p>There are efficient ways to increment a range of elements in an array
-(or list) by a constant value, such as Direct Iteration and Difference
-Array. We can also use NumPy to perform this operation.</p>
+<h2 id="Difference-Array">2. Difference Array</h2>
+<p>There are efficient ways to increment a range of elements in an array (or list) by a constant value,<br>
+such as Direct Iteration and Difference Array. We can also use NumPy to perform this operation.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">range_updates</span>(<span class="params">arr: <span class="built_in">list</span>, updates: <span class="built_in">list</span></span>):</span><br><span class="line">    <span class="string">"""Applies range updates to an array using the difference array technique."""</span></span><br><span class="line">    n = <span class="built_in">len</span>(arr)</span><br><span class="line">    diff = [<span class="number">0</span>] * (n + <span class="number">1</span>)  <span class="comment"># Difference array (length n + 1)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> start, end, val <span class="keyword">in</span> updates:</span><br><span class="line">        diff[start] += val</span><br><span class="line">        diff[end + <span class="number">1</span>] -= val</span><br><span class="line"></span><br><span class="line">    prefix_sums = [<span class="number">0</span>] * n  <span class="comment"># Prefix sum array (length n)</span></span><br><span class="line">    prefix_sums[<span class="number">0</span>] = diff[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, n):</span><br><span class="line">        prefix_sums[i] = prefix_sums[i - <span class="number">1</span>] + diff[i]</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Update the original array using the prefix sums</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(n):</span><br><span class="line">        arr[i] += prefix_sums[i]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> arr</span><br><span class="line"></span><br><span class="line"><span class="comment"># Example</span></span><br><span class="line">arr = [<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</span><br><span class="line">updates = [[<span class="number">1</span>, <span class="number">3</span>, <span class="number">1</span>], [<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>]]</span><br><span class="line">updated_arr = range_updates(arr, updates)</span><br><span class="line"><span class="built_in">print</span>(updated_arr)  <span class="comment"># Output: [2, 3, 3, 1, 0]</span></span><br></pre></td></tr></table></figure>
-<h3 id="difference-array-with-length-n-1">2.1. Difference Array with length
-n + 1</h3>
-<p>The difference array must have a length of <code>n + 1</code>. This
-is because the update step involves potentially accessing the element at
-index <code>end + 1</code>. By having an extra element in the difference
-array, we can avoid out-of-bounds errors when updating the prefix
-sums.</p>
-<h3 id="prefix-sum-array-with-length-n">2.2. Prefix Sum Array with length
-n</h3>
-<p>The prefix sum array, which is used to reconstruct the original
-array, should have a length of <code>n</code>. This is because the
-prefix sums represent the cumulative changes up to each index in the
-original array. So there's no need for an extra element in the prefix
-sum array.</p>
+<h3 id="Difference-Array-with-length-n-1">2.1. Difference Array with length n + 1</h3>
+<p>The difference array must have a length of <code>n + 1</code>.<br>
+This is because the update step involves potentially accessing the element at index <code>end + 1</code>.<br>
+By having an extra element in the difference array, we can avoid out-of-bounds errors when updating the prefix sums.</p>
+<h3 id="Prefix-Sum-Array-with-length-n">2.2. Prefix Sum Array with length n</h3>
+<p>The prefix sum array, which is used to reconstruct the original array, should have a length of <code>n</code>.<br>
+This is because the prefix sums represent the cumulative changes up to each index in the original array.<br>
+So there’s no need for an extra element in the prefix sum array.</p>
 
     </div>
 
@@ -446,11 +434,7 @@ sum array.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#optimizing-sliding-window-with-frequency-tracking"><span class="nav-text">1. Optimizing
-Sliding Window with Frequency Tracking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#common-mistake"><span class="nav-text">1.1. Common Mistake</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#correct-approachs"><span class="nav-text">1.2. Correct Approachs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#using-collections.counter"><span class="nav-text">1.2.1. Using
-collections.Counter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#implement-it-by-ourself"><span class="nav-text">1.2.2. Implement it by ourself</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#analysis"><span class="nav-text">1.3. Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#difference-array"><span class="nav-text">2. Difference Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#difference-array-with-length-n-1"><span class="nav-text">2.1. Difference Array with length
-n + 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#prefix-sum-array-with-length-n"><span class="nav-text">2.2. Prefix Sum Array with length
-n</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Optimizing-Sliding-Window-with-Frequency-Tracking"><span class="nav-text">1. Optimizing Sliding Window with Frequency Tracking</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Common-Mistake"><span class="nav-text">1.1. Common Mistake</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Correct-Approachs"><span class="nav-text">1.2. Correct Approachs</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Using-collections-Counter"><span class="nav-text">1.2.1. Using collections.Counter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Implement-it-by-ourself"><span class="nav-text">1.2.2. Implement it by ourself</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Analysis"><span class="nav-text">1.3. Analysis</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Difference-Array"><span class="nav-text">2. Difference Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Difference-Array-with-length-n-1"><span class="nav-text">2.1. Difference Array with length n + 1</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prefix-Sum-Array-with-length-n"><span class="nav-text">2.2. Prefix Sum Array with length n</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

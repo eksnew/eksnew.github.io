@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"eksnew.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。 众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。 1. 基础封印工作 1.1. 软件环境 首先肯定需要安装Docker，请参考官方文档Get Docker。 其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为a">
+  <meta name="description" content="现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。 1. 基础封印工作 1.1. 软件环境 首先肯定需要安装Docker，请参考官方文档Get Docker。其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="EasyConnect with Docker">
 <meta property="og:url" content="https://eksnew.github.io/2024/11/27/EasyConnect-with-Docker/index.html">
 <meta property="og:site_name" content="eksnew&#39;s Blog">
-<meta property="og:description" content="现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。 众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。 1. 基础封印工作 1.1. 软件环境 首先肯定需要安装Docker，请参考官方文档Get Docker。 其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为a">
+<meta property="og:description" content="现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。 1. 基础封印工作 1.1. 软件环境 首先肯定需要安装Docker，请参考官方文档Get Docker。其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTr">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2024-11-27T08:35:57.000Z">
 <meta property="article:modified_time" content="2025-03-11T08:51:56.391Z">
@@ -204,41 +204,32 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。
-众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。</p>
+        <p>现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。</p>
 <h2 id="基础封印工作">1. 基础封印工作</h2>
 <h3 id="软件环境">1.1. 软件环境</h3>
-<p>首先肯定需要安装Docker，请参考官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/get-docker/">Get Docker</a>。
-其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTrust，所以我们需要VNC
-Viewer来呈现登录的图形界面。 VNC的安装请参考官方网站<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC
-Viewer</a>。 最后我们需要Clash帮我们转发流量。
-因为Clash原仓库早已删库跑路，所以请自行从可信来源下载。</p>
-<h3 id="拉取docker镜像">1.2. 拉取Docker镜像</h3>
+<p>首先肯定需要安装Docker，请参考官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/get-docker/">Get Docker</a>。其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTrust，所以我们需要VNC Viewer来呈现登录的图形界面。<br>
+VNC的安装请参考官方网站<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a>。最后我们需要Clash帮我们转发流量。因为Clash原仓库早已删库跑路，所以请自行从可信来源下载。</p>
+<h3 id="拉取Docker镜像">1.2. 拉取Docker镜像</h3>
 <span id="more"></span>
-<p>感谢大佬普渡众生制作开源<a target="_blank" rel="noopener" href="https://github.com/docker-easyconnect/docker-easyconnect">docker-easyconnect项目</a>。
-依照项目readme，我们直接拉取图形界面版aTrust镜像，使用命令：</p>
+<p>感谢大佬普渡众生制作开源<a target="_blank" rel="noopener" href="https://github.com/docker-easyconnect/docker-easyconnect">docker-easyconnect项目</a>。依照项目readme，我们直接拉取图形界面版aTrust镜像，使用命令：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --<span class="built_in">rm</span> --device /dev/net/tun --cap-add NET_ADMIN -ti -e PASSWORD=xxxx -e URLWIN=1 -v <span class="variable">$HOME</span>/.atrust-data:/root -p 127.0.0.1:5901:5901 -p 127.0.0.1:1080:1080 -p 127.0.0.1:8888:8888 -p 127.0.0.1:54631:54631 --sysctl net.ipv4.conf.default.route_localnet=1 hagb/docker-atrust</span><br></pre></td></tr></table></figure>
-<h3 id="使用vnc-viewer进行图形化连接">1.3. 使用VNC Viewer进行图形化连接</h3>
-<p>打开VNC Viewer，从<code>File - New connection</code>添加新连接。
-若使用前述指令，则VNC
-Server为<code>127.0.0.1:5901</code>，密码<code>xxxx</code>。
-保存并连接，即可看到aTrust的登录界面。登陆后便有socks5代理跑在1080端口了。</p>
-<h3 id="使用clash转发流量">1.4. 使用Clash转发流量</h3>
-<p>在Clash中选择<code>Profiles</code>，应有默认的配置文件<code>config.yaml</code>。推荐拷贝一份以供修改。
-在其后（或你所使用魔法的配置文件的相关字段后）添加：</p>
+<h3 id="使用VNC-Viewer进行图形化连接">1.3. 使用VNC Viewer进行图形化连接</h3>
+<p>打开VNC Viewer，从<code>File - New connection</code>添加新连接。若使用前述指令，则VNC Server为<code>127.0.0.1:5901</code>，密码<code>xxxx</code>。保存并连接，即可看到aTrust的登录界面。登陆后便有socks5代理跑在1080端口了。</p>
+<h3 id="使用Clash转发流量">1.4. 使用Clash转发流量</h3>
+<p>在Clash中选择<code>Profiles</code>，应有默认的配置文件<code>config.yaml</code>。推荐拷贝一份以供修改。在其后（或你所使用魔法的配置文件的相关字段后）添加：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">proxies:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&quot;EasyConnect&quot;</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">socks5</span></span><br><span class="line">    <span class="attr">server:</span> <span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">1080</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">IP-CIDR,xx.xx.xx.xx/24,EasyConnect</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">IP-CIDR,xxx.xxx.xxx.xxx/24,EasyConnect</span></span><br></pre></td></tr></table></figure>
-<p>其中，<code>xx.xx.xx.xx</code>请根据自身实际情况修改。
-启用<code>General</code>中的<code>System Proxy</code>，即可实现流量转发。</p>
+<p>其中，<code>xx.xx.xx.xx</code>请根据自身实际情况修改。启用<code>General</code>中的<code>System Proxy</code>，即可实现流量转发。</p>
 <h2 id="进阶使用">2. 进阶使用</h2>
-<h3 id="配置clash-tun">2.1. 配置Clash TUN</h3>
-<p>借助Clash
-TUN，我们可以实现更加灵活的流量转发，一些非系统代理应用也可以访问学校内网。
-安装也十分简单，只需要在<code>General</code>页面中<code>Service Mode</code>的<code>Manage</code>中自动安装合适的服务模式即可。
-安装完成后<code>Service Mode</code>右侧浅灰色地球图标会变为绿色。</p>
+<h3 id="配置Clash-TUN">2.1. 配置Clash TUN</h3>
+<p>借助Clash TUN，我们可以实现更加灵活的流量转发，一些非系统代理应用也可以访问学校内网。安装也十分简单，只需要在<code>General</code>页面中<code>Service Mode</code>的<code>Manage</code>中自动安装合适的服务模式即可。安装完成后<code>Service Mode</code>右侧浅灰色地球图标会变为绿色。</p>
 <h2 id="参考资料">3. 参考资料</h2>
-<ol type="1">
-<li><a target="_blank" rel="noopener" href="http://jortana.top/2021/07/13/%E7%94%A8docker%E5%B0%81%E5%8D%B0EasyConnect%E5%B9%B6%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93/">用docker封印EasyConnect并连接远程桌面和数据库</a></li>
-<li><a target="_blank" rel="noopener" href="https://cloudac7.github.io/p/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BF%AB%E4%B9%90%E7%A7%91%E7%A0%94wsl2-docker-easyconnect-clash/">新时代的快乐科研：WSL2+Docker+EasyConnect+Clash</a></li>
+<ol>
+<li class="lvl-3">
+<p><a target="_blank" rel="noopener" href="http://jortana.top/2021/07/13/%E7%94%A8docker%E5%B0%81%E5%8D%B0EasyConnect%E5%B9%B6%E8%BF%9E%E6%8E%A5%E8%BF%9C%E7%A8%8B%E6%A1%8C%E9%9D%A2%E5%92%8C%E6%95%B0%E6%8D%AE%E5%BA%93/">用docker封印EasyConnect并连接远程桌面和数据库</a></p>
+</li>
+<li class="lvl-3">
+<p><a target="_blank" rel="noopener" href="https://cloudac7.github.io/p/%E6%96%B0%E6%97%B6%E4%BB%A3%E7%9A%84%E5%BF%AB%E4%B9%90%E7%A7%91%E7%A0%94wsl2-docker-easyconnect-clash/">新时代的快乐科研：WSL2+Docker+EasyConnect+Clash</a></p>
+</li>
 </ol>
 
     </div>
@@ -320,7 +311,7 @@ TUN，我们可以实现更加灵活的流量转发，一些非系统代理应�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%B0%81%E5%8D%B0%E5%B7%A5%E4%BD%9C"><span class="nav-text">1. 基础封印工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="nav-text">1.1. 软件环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96docker%E9%95%9C%E5%83%8F"><span class="nav-text">1.2. 拉取Docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8vnc-viewer%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%BD%A2%E5%8C%96%E8%BF%9E%E6%8E%A5"><span class="nav-text">1.3. 使用VNC Viewer进行图形化连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8clash%E8%BD%AC%E5%8F%91%E6%B5%81%E9%87%8F"><span class="nav-text">1.4. 使用Clash转发流量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="nav-text">2. 进阶使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEclash-tun"><span class="nav-text">2.1. 配置Clash TUN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">3. 参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%B0%81%E5%8D%B0%E5%B7%A5%E4%BD%9C"><span class="nav-text">1. 基础封印工作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E4%BB%B6%E7%8E%AF%E5%A2%83"><span class="nav-text">1.1. 软件环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%89%E5%8F%96Docker%E9%95%9C%E5%83%8F"><span class="nav-text">1.2. 拉取Docker镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8VNC-Viewer%E8%BF%9B%E8%A1%8C%E5%9B%BE%E5%BD%A2%E5%8C%96%E8%BF%9E%E6%8E%A5"><span class="nav-text">1.3. 使用VNC Viewer进行图形化连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Clash%E8%BD%AC%E5%8F%91%E6%B5%81%E9%87%8F"><span class="nav-text">1.4. 使用Clash转发流量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E4%BD%BF%E7%94%A8"><span class="nav-text">2. 进阶使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEClash-TUN"><span class="nav-text">2.1. 配置Clash TUN</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">3. 参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

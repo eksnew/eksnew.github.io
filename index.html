@@ -308,17 +308,9 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="definition">1. Definition</h2>
-<p>Backtracking is a problem-solving algorithmic technique that involves
-finding a solution incrementally by trying different options and undoing
-them if they lead to a dead end. It is commonly used in situations where
-you need to explore multiple possibilities to solve a problem, like
-searching for a path in a maze or solving puzzles like Sudoku. When a
-dead end is reached, the algorithm backtracks to the previous decision
-point and explores a different path until a solution is found or all
-possibilities have been exhausted.</p>
-<h2 id="the-difference-between-generating-subsets-and-combinations">2. The
-Difference Between Generating Subsets and Combinations</h2>
+          <h2 id="Definition">1. Definition</h2>
+<p>Backtracking is a problem-solving algorithmic technique that involves finding a solution incrementally by trying different options and undoing them if they lead to a dead end. It is commonly used in situations where you need to explore multiple possibilities to solve a problem, like searching for a path in a maze or solving puzzles like Sudoku. When a dead end is reached, the algorithm backtracks to the previous decision point and explores a different path until a solution is found or all possibilities have been exhausted.</p>
+<h2 id="The-Difference-Between-Generating-Subsets-and-Combinations">2. The Difference Between Generating Subsets and Combinations</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2025/02/19/Backtracking/#more" rel="contents">
@@ -390,13 +382,9 @@ Difference Between Generating Subsets and Combinations</h2>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="definition">1. Definition</h2>
-<p>Binary Search Algorithm is a searching algorithm used in a sorted
-array by repeatedly dividing the search interval in half. The idea of
-binary search is to use the information that the array is sorted and
-reduce the time complexity to O(log N).</p>
-<h2 id="prob.-2779.-maximum-beauty-of-an-array-after-applying-operation">2. Prob.
-2779. Maximum Beauty of an Array After Applying Operation</h2>
+          <h2 id="Definition">1. Definition</h2>
+<p>Binary Search Algorithm is a searching algorithm used in a sorted array by repeatedly dividing the search interval in half. The idea of binary search is to use the information that the array is sorted and reduce the time complexity to O(log N).</p>
+<h2 id="Prob-2779-Maximum-Beauty-of-an-Array-After-Applying-Operation">2. Prob. 2779. Maximum Beauty of an Array After Applying Operation</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/12/13/Binary-Search/#more" rel="contents">
@@ -468,28 +456,17 @@ reduce the time complexity to O(log N).</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="definition">1. Definition</h2>
-<p>A Heap is a complete binary tree data structure that satisfies the
-heap property: for every node, the value of its children is greater than
-or equal to its own value. Heaps are usually used to implement priority
-queues, where the smallest (or largest) element is always at the root of
-the tree.</p>
-<h3 id="min-heap">1.1. Min Heap</h3>
-<p>In a Min-Heap the key present at the root node must be less than or
-equal among the keys present at all of its children. The same property
-must be recursively true for all sub-trees in that Binary Tree. In a
-Min-Heap the minimum key element present at the root.</p>
+          <h2 id="Definition">1. Definition</h2>
+<p>A Heap is a complete binary tree data structure that satisfies the heap property: for every node, the value of its children is greater than or equal to its own value. Heaps are usually used to implement priority queues, where the smallest (or largest) element is always at the root of the tree.</p>
+<h3 id="Min-Heap">1.1. Min Heap</h3>
+<p>In a Min-Heap the key present at the root node must be less than or equal among the keys present at all of its children. The same property must be recursively true for all sub-trees in that Binary Tree. In a Min-Heap the minimum key element present at the root.</p>
 <p>Often constructed by:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heapq.heappush(heap, num)</span><br></pre></td></tr></table></figure>
-<h3 id="max-heap">1.2. Max Heap</h3>
-<p>In a Max-Heap the key present at the root node must be greater than
-or equal among the keys present at all of its children. The same
-property must be recursively true for all sub-trees in that Binary Tree.
-In a Max-Heap the maximum key element present at the root.</p>
+<h3 id="Max-Heap">1.2. Max Heap</h3>
+<p>In a Max-Heap the key present at the root node must be greater than or equal among the keys present at all of its children. The same property must be recursively true for all sub-trees in that Binary Tree. In a Max-Heap the maximum key element present at the root.</p>
 <p>Often constructed by:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">heapq.heappush(heap, -num)  <span class="comment"># Negate `num` to simulate max-heap</span></span><br></pre></td></tr></table></figure>
-<h2 id="prob.-2558.-take-gifts-from-the-richest-pile---easy">2. Prob. 2558.
-Take Gifts From the Richest Pile - Easy</h2>
+<h2 id="Prob-2558-Take-Gifts-From-the-Richest-Pile-Easy">2. Prob. 2558. Take Gifts From the Richest Pile - Easy</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/12/13/Heap/#more" rel="contents">
@@ -572,18 +549,16 @@ Take Gifts From the Richest Pile - Easy</h2>
       
           <p>ICCV 2023的工作。</p>
 <div class="tips">
-<p><strong>简单总结</strong>
-将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。
-保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。</p>
+<p><strong>简单总结</strong><br>
+将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。</p>
 <p>预训练网络有更大潜力。文章会讲故事能加分。</p>
 </div>
 <h2 id="引入">1. 引入</h2>
 <h3 id="现有问题">1.1. 现有问题</h3>
-<p>现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN等等）需要从头开始训练——
+<p>现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN等等）需要从头开始训练——<br>
 无法利用已在大型数据集上预训练的表示模型的优势。</p>
-<h3 id="what-to-do">1.2. What to do</h3>
-<p>试图充分利用预训练模型以提升检测器泛化能力——将预训练的Transformer的encoder-decoders进行整体迁移，
-去构建一个完全预训练且与预训练模型尽可能一致的特征提取路径。</p>
+<h3 id="What-to-do">1.2. What to do</h3>
+<p>试图充分利用预训练模型以提升检测器泛化能力——将预训练的Transformer的encoder-decoders进行整体迁移，去构建一个完全预训练且与预训练模型尽可能一致的特征提取路径。</p>
 <div style="width:40%;margin:auto">
 <img src="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png" class title="结构对比图">
 </div>
@@ -669,19 +644,22 @@ Take Gifts From the Richest Pile - Easy</h2>
       
           <p>ICCV 2021的Best Paper。一篇有年头的文章，但经典值得一读。</p>
 <div class="tips">
-<p><strong>简单总结</strong>
+<p><strong>简单总结</strong><br>
 借鉴了许多过往CNN网络里的设计理念，将CNN与Transformer进行了完美结合。</p>
 </div>
 <h2 id="引入">1. 引入</h2>
 <p>期望构建一个视觉中通用的backbone，证明Transformer在视觉领域的作用。</p>
 <h3 id="难点">1.1. 难点</h3>
 <p>Transformer从NLP转移到CV领域具有挑战性：</p>
-<ul>
-<li>最小尺寸（感觉不是这个意思，有待阅读相关文献）。不同于单词，图像像素是很多的，这意味着可选择的最小尺寸很多。而现有Transformer-based架构中token的尺寸是固定的，这并不适合CV。</li>
-<li>图像分辨率。如语义分割的视觉任务中，高分辨率图像在Transformer中不好处理，因为自注意力的计算复杂度与图像尺寸呈二次关系。
-当输入图片尺寸稍大，计算复杂度就变得难以接受了。</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>最小尺寸（感觉不是这个意思，有待阅读相关文献）。不同于单词，图像像素是很多的，这意味着可选择的最小尺寸很多。而现有Transformer-based架构中token的尺寸是固定的，这并不适合CV。</p>
+</li>
+<li class="lvl-2">
+<p>图像分辨率。如语义分割的视觉任务中，高分辨率图像在Transformer中不好处理，因为自注意力的计算复杂度与图像尺寸呈二次关系。当输入图片尺寸稍大，计算复杂度就变得难以接受了。</p>
+</li>
 </ul>
-<h3 id="what-to-do">1.2. What to do</h3>
+<h3 id="What-to-do">1.2. What to do</h3>
 <p>提出一种新backbone，能构建分层的特征图且计算复杂度与图像尺寸呈线性关系。</p>
           <!--noindex-->
             <div class="post-button">
@@ -765,13 +743,10 @@ Take Gifts From the Richest Pile - Easy</h2>
       
           <p>ICCV 2021的工作。</p>
 <h2 id="引入">1. 引入</h2>
-<h3 id="motivation">1.1. Motivation</h3>
-<p>Transformer在视觉上的成功能否解释为在预训练中用了监督？
-因为Transformers在NLP领域取得成功的主要因素之一是使用自监督进行预训练。</p>
-<p>不同与NLP里预测句子的单词，视觉上提供更为丰富的信息可供学习：
-在图像中，图像级监督通常会将图像中包含的丰富视觉信息简化为从数千个对象类别的预定义集合中选择的单个概念
-（直接机翻，大概知道是这个意思就行），即图像的有监督训练是把图像中包含的丰富的视觉信息压缩到只有类别的标签信息。</p>
-<h3 id="what-to-do">1.2. What to do</h3>
+<h3 id="Motivation">1.1. Motivation</h3>
+<p>Transformer在视觉上的成功能否解释为在预训练中用了监督？因为Transformers在NLP领域取得成功的主要因素之一是使用自监督进行预训练。</p>
+<p>不同与NLP里预测句子的单词，视觉上提供更为丰富的信息可供学习：在图像中，图像级监督通常会将图像中包含的丰富视觉信息简化为从数千个对象类别的预定义集合中选择的单个概念（直接机翻，大概知道是这个意思就行），即图像的有监督训练是把图像中包含的丰富的视觉信息压缩到只有类别的标签信息。</p>
+<h3 id="What-to-do">1.2. What to do</h3>
 <p>提出了一种没有标签的知识蒸馏方法。</p>
           <!--noindex-->
             <div class="post-button">
@@ -844,11 +819,9 @@ Take Gifts From the Richest Pile - Easy</h2>
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="definition">1. Definition</h2>
-<p>Graph Data Structure is a collection of nodes connected by edges.
-It's used to represent relationships between different entities.</p>
-<h2 id="prob.-3243.-shortest-distance-after-road-addition-queries-i">2. Prob.
-3243. Shortest Distance After Road Addition Queries I</h2>
+          <h2 id="Definition">1. Definition</h2>
+<p>Graph Data Structure is a collection of nodes connected by edges. It’s used to represent relationships between different entities.</p>
+<h2 id="Prob-3243-Shortest-Distance-After-Road-Addition-Queries-I">2. Prob. 3243. Shortest Distance After Road Addition Queries I</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/11/30/Graph/#more" rel="contents">
@@ -920,16 +893,12 @@ It's used to represent relationships between different entities.</p>
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。
-众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。</p>
+          <p>现在外派到南通，研究院没有校园网环境，所以访问校内资源及服务器就需要用EasyConnect。众所周知EasyConnect是国内数一数二的流氓软件，所以在此记录一下如何在Docker中封印它。</p>
 <h2 id="基础封印工作">1. 基础封印工作</h2>
 <h3 id="软件环境">1.1. 软件环境</h3>
-<p>首先肯定需要安装Docker，请参考官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/get-docker/">Get Docker</a>。
-其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTrust，所以我们需要VNC
-Viewer来呈现登录的图形界面。 VNC的安装请参考官方网站<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC
-Viewer</a>。 最后我们需要Clash帮我们转发流量。
-因为Clash原仓库早已删库跑路，所以请自行从可信来源下载。</p>
-<h3 id="拉取docker镜像">1.2. 拉取Docker镜像</h3>
+<p>首先肯定需要安装Docker，请参考官方文档<a target="_blank" rel="noopener" href="https://docs.docker.com/get-started/get-docker/">Get Docker</a>。其次，在24年11月21日后，东南大学VPN服务器升级，从原有的EasyConnect升级为aTrust，所以我们需要VNC Viewer来呈现登录的图形界面。<br>
+VNC的安装请参考官方网站<a target="_blank" rel="noopener" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a>。最后我们需要Clash帮我们转发流量。因为Clash原仓库早已删库跑路，所以请自行从可信来源下载。</p>
+<h3 id="拉取Docker镜像">1.2. 拉取Docker镜像</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/11/27/EasyConnect-with-Docker/#more" rel="contents">
@@ -1001,29 +970,27 @@ Viewer</a>。 最后我们需要Clash帮我们转发流量。
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="definition">1. Definition</h2>
-<p>Sliding Window problems are problems in which a fixed or
-variable-size window is moved through a data structure, typically an
-array or string, to solve problems efficiently based on continuous
-subsets of elements. This technique is used when we need to find
-subarrays or substrings according to a given set of conditions.</p>
-<h3 id="how-to-identify-sliding-window-problems">1.1. How to Identify Sliding
-Window Problems</h3>
-<ul>
-<li>These problems generally require Finding Maximum/Minimum Subarray,
-Substrings which satisfy some specific condition.</li>
-<li>The size of the subarray or substring ‘K’ will be given in some of
-the problems.</li>
-<li>These problems can easily be solved in <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="6.606ex" height="2.452ex" role="img" focusable="false" viewbox="0 -833.9 2919.8 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mn" transform="translate(975.3,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(2530.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container></span> time complexity using nested
-loops, using sliding window we can solve these in O(n) Time -
-Complexity.</li>
-<li>Required Time Complexity: O(N) or O(Nlog(N))</li>
-<li>Constraints: <span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.312ex;" xmlns="http://www.w3.org/2000/svg" width="8.276ex" height="2.267ex" role="img" focusable="false" viewbox="0 -864 3658.1 1002"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mo" transform="translate(1165.8,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"/></g><g data-mml-node="msup" transform="translate(2221.6,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"/></g></g></g></g></svg></mjx-container></span> , If
-<span class="math inline"><mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.009ex" height="1.545ex" role="img" focusable="false" viewbox="0 -683 888 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g></g></g></svg></mjx-container></span> is the size of the
-Array/String.</li>
+          <h2 id="Definition">1. Definition</h2>
+<p>Sliding Window problems are problems in which a fixed or variable-size window is moved through a data structure, typically an array or string, to solve problems efficiently based on continuous subsets of elements. This technique is used when we need to find subarrays or substrings according to a given set of conditions.</p>
+<h3 id="How-to-Identify-Sliding-Window-Problems">1.1. How to Identify Sliding Window Problems</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>These problems generally require Finding Maximum/Minimum Subarray, Substrings which satisfy some specific condition.</p>
+</li>
+<li class="lvl-2">
+<p>The size of the subarray or substring ‘K’ will be given in some of the problems.</p>
+</li>
+<li class="lvl-2">
+<p>These problems can easily be solved in <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="6.606ex" height="2.452ex" role="img" focusable="false" viewbox="0 -833.9 2919.8 1083.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"/></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"/></g><g data-mml-node="msup" transform="translate(1152,0)"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mn" transform="translate(975.3,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"/></g></g><g data-mml-node="mo" transform="translate(2530.8,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"/></g></g></g></svg></mjx-container> time complexity using nested loops, using sliding window we can solve these in O(n) Time - Complexity.</p>
+</li>
+<li class="lvl-2">
+<p>Required Time Complexity: O(N) or O(Nlog(N))</p>
+</li>
+<li class="lvl-2">
+<p>Constraints: <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: -0.312ex;" xmlns="http://www.w3.org/2000/svg" width="8.276ex" height="2.267ex" role="img" focusable="false" viewbox="0 -864 3658.1 1002"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g><g data-mml-node="mo" transform="translate(1165.8,0)"><path data-c="2264" d="M674 636Q682 636 688 630T694 615T687 601Q686 600 417 472L151 346L399 228Q687 92 691 87Q694 81 694 76Q694 58 676 56H670L382 192Q92 329 90 331Q83 336 83 348Q84 359 96 365Q104 369 382 500T665 634Q669 636 674 636ZM84 -118Q84 -108 99 -98H678Q694 -104 694 -118Q694 -130 679 -138H98Q84 -131 84 -118Z"/></g><g data-mml-node="msup" transform="translate(2221.6,0)"><g data-mml-node="mn"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"/><path data-c="30" d="M96 585Q152 666 249 666Q297 666 345 640T423 548Q460 465 460 320Q460 165 417 83Q397 41 362 16T301 -15T250 -22Q224 -22 198 -16T137 16T82 83Q39 165 39 320Q39 494 96 585ZM321 597Q291 629 250 629Q208 629 178 597Q153 571 145 525T137 333Q137 175 145 125T181 46Q209 16 250 16Q290 16 318 46Q347 76 354 130T362 333Q362 478 354 524T321 597Z" transform="translate(500,0)"/></g><g data-mml-node="mn" transform="translate(1033,393.1) scale(0.707)"><path data-c="36" d="M42 313Q42 476 123 571T303 666Q372 666 402 630T432 550Q432 525 418 510T379 495Q356 495 341 509T326 548Q326 592 373 601Q351 623 311 626Q240 626 194 566Q147 500 147 364L148 360Q153 366 156 373Q197 433 263 433H267Q313 433 348 414Q372 400 396 374T435 317Q456 268 456 210V192Q456 169 451 149Q440 90 387 34T253 -22Q225 -22 199 -14T143 16T92 75T56 172T42 313ZM257 397Q227 397 205 380T171 335T154 278T148 216Q148 133 160 97T198 39Q222 21 251 21Q302 21 329 59Q342 77 347 104T352 209Q352 289 347 316T329 361Q302 397 257 397Z"/></g></g></g></g></svg></mjx-container> , If <mjx-container class="MathJax" jax="SVG"><svg style="vertical-align: 0;" xmlns="http://www.w3.org/2000/svg" width="2.009ex" height="1.545ex" role="img" focusable="false" viewbox="0 -683 888 683"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D441" d="M234 637Q231 637 226 637Q201 637 196 638T191 649Q191 676 202 682Q204 683 299 683Q376 683 387 683T401 677Q612 181 616 168L670 381Q723 592 723 606Q723 633 659 637Q635 637 635 648Q635 650 637 660Q641 676 643 679T653 683Q656 683 684 682T767 680Q817 680 843 681T873 682Q888 682 888 672Q888 650 880 642Q878 637 858 637Q787 633 769 597L620 7Q618 0 599 0Q585 0 582 2Q579 5 453 305L326 604L261 344Q196 88 196 79Q201 46 268 46H278Q284 41 284 38T282 19Q278 6 272 0H259Q228 2 151 2Q123 2 100 2T63 2T46 1Q31 1 31 10Q31 14 34 26T39 40Q41 46 62 46Q130 49 150 85Q154 91 221 362L289 634Q287 635 234 637Z"/></g></g></g></svg></mjx-container> is the size of the Array/String.</p>
+</li>
 </ul>
-<h2 id="prob.-2516-take-k-of-each-character-from-left-and-right">2. Prob.
-2516: Take K of Each Character From Left and Right</h2>
+<h2 id="Prob-2516-Take-K-of-Each-Character-From-Left-and-Right">2. Prob. 2516: Take K of Each Character From Left and Right</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/11/21/Sliding-Window/#more" rel="contents">
@@ -1096,9 +1063,8 @@ Array/String.</li>
 
       
           <p>以此记录刷LeetCode过程中的一些tricks。</p>
-<h2 id="optimizing-sliding-window-with-frequency-tracking">1. Optimizing
-Sliding Window with Frequency Tracking</h2>
-<h3 id="common-mistake">1.1. Common Mistake</h3>
+<h2 id="Optimizing-Sliding-Window-with-Frequency-Tracking">1. Optimizing Sliding Window with Frequency Tracking</h2>
+<h3 id="Common-Mistake">1.1. Common Mistake</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/11/19/Tricks-for-Algorithm/#more" rel="contents">

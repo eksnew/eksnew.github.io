@@ -214,39 +214,28 @@
 
       
         <div class="warning">
-<p><strong>注意</strong> 本文转载自我2020年发布于博客园的博文。</p>
+<p><strong>注意</strong><br>
+本文转载自我2020年发布于博客园的博文。</p>
 </div>
-<p>如果你也在使用
-nltk.download()时出错，本简短的随笔会帮助你解决这个问题。如果本随笔对你有帮助，登陆后给我个赞罢。</p>
+<p>如果你也在使用 nltk.download()时出错，本简短的随笔会帮助你解决这个问题。如果本随笔对你有帮助，登陆后给我个赞罢。</p>
 <span id="more"></span>
-<p>首先踩一脚其他类似的博文：那些博文太老，太落后，并且一个抄一个，最早竟能追溯到
-12
-年。结果只能把简单的变为复杂的，对卡在安装上的你我毫无帮助。好的，批评到此结束，下面请看教程~</p>
-<p>首先使用 <code>WIN + R</code> 输入
-cmd，<code>Ctrl + Shift + Enter</code> 打开命令提示符，键入</p>
+<p>首先踩一脚其他类似的博文：那些博文太老，太落后，并且一个抄一个，最早竟能追溯到 12 年。结果只能把简单的变为复杂的，对卡在安装上的你我毫无帮助。好的，批评到此结束，下面请看教程~</p>
+<p>首先使用 <code>WIN + R</code> 输入 cmd，<code>Ctrl + Shift + Enter</code> 打开命令提示符，键入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install nltk</span><br></pre></td></tr></table></figure>
 <p>然后在 python 交互下使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk.book</span><br></pre></td></tr></table></figure>
 <p>此时你应能看到一系列的，一长串的报错。最末尾会有一段（可能并不完全相同，数量也不一样）：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Searched in:</span><br><span class="line">    - &#x27;C:\\&lt;一个路径&gt;/nltk_data&#x27;</span><br><span class="line">    - &#x27;C:\\&lt;一个路径&gt;\\nltk_data&#x27;</span><br><span class="line">    - &#x27;C:\\&lt;一个路径&gt;\\nltk_data&#x27;</span><br><span class="line">    - &#x27;C:\\&lt;一个路径&gt;\\nltk_data&#x27;</span><br><span class="line">    - &#x27;C:\\&lt;一个路径&gt;\\nltk_data&#x27;</span><br><span class="line">    - &#x27;C:\\nltk_data&#x27;</span><br><span class="line">    - &#x27;D:\\nltk_data&#x27;</span><br><span class="line">    - &#x27;E:\\nltk_data&#x27;</span><br></pre></td></tr></table></figure>
-<p>好，记下其中任一路径。接下来我们去 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk_data">nltk 的 GitHub 仓库页面</a>
-下载我们需要的数据。</p>
-<p>现在是 2020 年 5 月 18
-日，你只需下载正数第二个“packages”文件夹即可。关于如何在 GitHub
-下载文件夹，可以参阅其他博文，这里就不再赘述~</p>
+<p>好，记下其中任一路径。接下来我们去 <a target="_blank" rel="noopener" href="https://github.com/nltk/nltk_data">nltk 的 GitHub 仓库页面</a> 下载我们需要的数据。</p>
+<p>现在是 2020 年 5 月 18 日，你只需下载正数第二个“packages”文件夹即可。关于如何在 GitHub 下载文件夹，可以参阅其他博文，这里就不再赘述~</p>
 <p>（如果你实在不会。。。算啦）</p>
-<p>---A Few Moments Later---</p>
-<p>好的，假定你已经下载并成功得到了 packages
-文件夹及其内含的所有文件。现在，把 packages
-文件夹下的所有子文件夹拷贝至前述任一路径处。请注意，不要把 packages
-拷过去，而是 packages
-的子文件夹。（我这里强调了两次，相信你已经看到并看懂了~）</p>
+<p>—A Few Moments Later—</p>
+<p>好的，假定你已经下载并成功得到了 packages 文件夹及其内含的所有文件。现在，把 packages 文件夹下的所有子文件夹拷贝至前述任一路径处。请注意，不要把 packages 拷过去，而是 packages 的子文件夹。（我这里强调了两次，相信你已经看到并看懂了~）</p>
 <p>好，大功告成。在 python 交互下使用</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> nltk.book</span><br></pre></td></tr></table></figure>
 <p>此时你应看见如下输出：</p>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">*** Introductory Examples for the NLTK Book ***</span><br><span class="line">Loading text1, ..., text9 and sent1, ..., sent9</span><br><span class="line">Type the name of the text or sentence to view it.</span><br><span class="line">Type: &#x27;texts()&#x27; or &#x27;sents()&#x27; to list the materials.</span><br><span class="line">text1: Moby Dick by Herman Melville 1851</span><br><span class="line">text2: Sense and Sensibility by Jane Austen 1811</span><br><span class="line">text3: The Book of Genesis</span><br><span class="line">text4: Inaugural Address Corpus</span><br><span class="line">text5: Chat Corpus</span><br><span class="line">text6: Monty Python and the Holy Grail</span><br><span class="line">text7: Wall Street Journal</span><br><span class="line">text8: Personals Corpus</span><br><span class="line">text9: The Man Who Was Thursday by G . K . Chesterton 1908</span><br></pre></td></tr></table></figure>
-<p>恭喜，安装完成。简单吧，容易吧。天知道那些博客是怎么把如此简单的事阐述得如此复杂！
-感谢你的阅读，本文完。</p>
+<p>恭喜，安装完成。简单吧，容易吧。天知道那些博客是怎么把如此简单的事阐述得如此复杂！感谢你的阅读，本文完。</p>
 
     </div>
 

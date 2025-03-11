@@ -222,30 +222,46 @@
 <p>一般都生成了吧。如果没有的话可以使用下面指令生成哦，生成所得的密钥文件会保存在<code>C:\User\&lt;Your Username&gt;\.ssh</code>下。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
 <h3 id="在服务器上保存你的公钥">2.2. 在服务器上保存你的公钥</h3>
-<p>可以在服务器上新建一个名为authorized_keys的空白文档，然后将<code>.ssh\id_rsa.pub</code>中的内容拷贝进去；
-当然，也可以选择将<code>id_rsa.pub</code>重命名为<code>authorized_keys</code>然后放在服务器上。</p>
+<p>可以在服务器上新建一个名为authorized_keys的空白文档，然后将<code>.ssh\id_rsa.pub</code>中的内容拷贝进去；当然，也可以选择将<code>id_rsa.pub</code>重命名为<code>authorized_keys</code>然后放在服务器上。</p>
 <p>最后就是放在哪里的问题。很简单，<code>authorized_keys</code>放在<code>/root/.ssh</code>下或<code>/home/&lt;Your Username&gt;/.ssh</code>下即可。</p>
 <h3 id="vscode的ssh配置">2.3. vscode的ssh配置</h3>
 <p>感觉内容比较单薄，这里再写一点vscode的ssh配置吧，具体如下：</p>
-<ul>
-<li>安装Remote - SSH插件；</li>
-<li>点击左下角小图标，在弹出栏中选择<code>Connect to Host...</code>；</li>
-<li>选择<code>Configure SSH Hosts...</code>进行SSH配置；</li>
-<li>配置完成后每次连接时点击左下小图标后选择服务器即可。</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>安装Remote - SSH插件；</p>
+</li>
+<li class="lvl-2">
+<p>点击左下角小图标，在弹出栏中选择<code>Connect to Host...</code>；</p>
+</li>
+<li class="lvl-2">
+<p>选择<code>Configure SSH Hosts...</code>进行SSH配置；</p>
+</li>
+<li class="lvl-2">
+<p>配置完成后每次连接时点击左下小图标后选择服务器即可。</p>
+</li>
 </ul>
-<h4 id="ssh配置格式">2.3.1. SSH配置格式</h4>
+<h4 id="SSH配置格式">2.3.1. SSH配置格式</h4>
 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Host 为服务器起一个好听的名字</span><br><span class="line">    HostName 服务器地址</span><br><span class="line">    User 用户名</span><br><span class="line">    Port 端口。默认是22</span><br></pre></td></tr></table></figure>
 <p>还有很多很多可选参数，比如：</p>
-<ul>
-<li>IdentityFile</li>
-<li>PreferredAuthentications</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>IdentityFile</p>
+</li>
+<li class="lvl-2">
+<p>PreferredAuthentications</p>
+</li>
 </ul>
 <h4 id="一些你可能会用到的vscode快捷键">2.3.2. 一些你可能会用到的vscode快捷键</h4>
-<ul>
-<li><code>Ctrl + Shift + P</code>：打开命令面板（<code>Ctrl + P</code>
-是转到文件）；</li>
-<li>`Ctrl + ``：打开终端；</li>
-<li><code>Ctrl + Tab</code>：像<code>Alt + Tab</code>一样切换vscode的选项卡。</li>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>Ctrl + Shift + P</code>：打开命令面板（<code>Ctrl + P</code> 是转到文件）；</p>
+</li>
+<li class="lvl-2">
+<p>`Ctrl + ``：打开终端；</p>
+</li>
+<li class="lvl-2">
+<p><code>Ctrl + Tab</code>：像<code>Alt + Tab</code>一样切换vscode的选项卡。</p>
+</li>
 </ul>
 
     </div>
@@ -327,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">2. 具体配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="nav-text">2.1. 生成密钥对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BF%9D%E5%AD%98%E4%BD%A0%E7%9A%84%E5%85%AC%E9%92%A5"><span class="nav-text">2.2. 在服务器上保存你的公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode%E7%9A%84ssh%E9%85%8D%E7%BD%AE"><span class="nav-text">2.3. vscode的ssh配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ssh%E9%85%8D%E7%BD%AE%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.3.1. SSH配置格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84vscode%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">2.3.2. 一些你可能会用到的vscode快捷键</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">1. 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">2. 具体配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5%E5%AF%B9"><span class="nav-text">2.1. 生成密钥对</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E4%BF%9D%E5%AD%98%E4%BD%A0%E7%9A%84%E5%85%AC%E9%92%A5"><span class="nav-text">2.2. 在服务器上保存你的公钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vscode%E7%9A%84ssh%E9%85%8D%E7%BD%AE"><span class="nav-text">2.3. vscode的ssh配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SSH%E9%85%8D%E7%BD%AE%E6%A0%BC%E5%BC%8F"><span class="nav-text">2.3.1. SSH配置格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%BA%9B%E4%BD%A0%E5%8F%AF%E8%83%BD%E4%BC%9A%E7%94%A8%E5%88%B0%E7%9A%84vscode%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">2.3.2. 一些你可能会用到的vscode快捷键</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

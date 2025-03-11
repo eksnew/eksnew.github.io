@@ -219,23 +219,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>因为毕业设计需要将魔改后的YOLOv5模型部署在Jetson Xavier
-NX上，由此记录一下配置的全过程。</p>
+        <p>因为毕业设计需要将魔改后的YOLOv5模型部署在Jetson Xavier NX上，由此记录一下配置的全过程。</p>
 <span id="more"></span>
 <h2 id="镜像烧录">1. 镜像烧录</h2>
 <h3 id="镜像下载">1.1. 镜像下载</h3>
-<p>访问<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/downloads">Jetson
-Download Center</a>，以<code>image</code>关键字搜索，能看到Jetson Xavier
-NX Developer Kit SD Card
-Image项。展开该选项卡然后下载即可。在本文的撰写日期（2023年6月24日）其提供的版本为5.0.2，发布时间为2022年8月15日。</p>
+<p>访问<a target="_blank" rel="noopener" href="https://developer.nvidia.com/embedded/downloads">Jetson Download Center</a>，以<code>image</code>关键字搜索，能看到Jetson Xavier NX Developer Kit SD Card Image项。展开该选项卡然后下载即可。在本文的撰写日期（2023年6月24日）其提供的版本为5.0.2，发布时间为2022年8月15日。</p>
 <p>值得注意的是描述中的这句话：</p>
 <blockquote>
-<p>This SD card image works for the Jetson Xavier NX Developer Kit and
-is built with JetPack 5.0.2</p>
+<p>This SD card image works for the Jetson Xavier NX Developer Kit and is built with JetPack 5.0.2</p>
 </blockquote>
 <p>下载完成后别忘了解压。</p>
 <h3 id="烧录">1.2. 烧录</h3>
-<h4 id="准备烧录工具与tf卡">1.2.1. 准备烧录工具与TF卡</h4>
+<h4 id="准备烧录工具与TF卡">1.2.1. 准备烧录工具与TF卡</h4>
 <p>烧录工具我选用的是balenaEtcher，其优点当然是干净，下载地址在<a target="_blank" rel="noopener" href="https://etcher.balena.io">这里</a>。当然也可以选择其他烧录工具。</p>
 <p>TF卡上我选择的是SanDisk的64GB至尊高速TF卡。事实上我对TF卡毫无研究与理解，但既然30块的TF卡都能满足后续需求，我想应该大部分TF卡都能支持吧。</p>
 <h4 id="进行烧录">1.2.2. 进行烧录</h4>
@@ -243,20 +238,18 @@ is built with JetPack 5.0.2</p>
 <img src="/2023/06/24/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Setting-up-Jetson-Xavier-NX-from-scratch/balenaEtcher.png" class>
 <p>打开balenaEtcher，通过<code>Flash from file</code>选择下载完成的<code>.img</code>镜像，接着点击<code>Select target</code>选择所插入的TF卡，最后按<code>Flash</code>执行烧录即可。balenaEtcher会自动识别TF卡，但也可以手动指定，只要别不小心把本机的硬盘干了就行。</p>
 <h4 id="配置">1.2.3. 配置</h4>
-<p>完成烧录后便可以将TF卡插入Jetson Xavier
-NX了，其插入的口特别隐蔽，注意耐心寻找或者直接看盒子里附带的手册。</p>
-<p>插入后，启动Jetson Xavier NX便来到了一个正常的Ubuntu 22.04.2
-LTS配置环节，没有任何难度。综上，该环节最难的步骤应该是以恰当的力度将TF卡插入NX。</p>
+<p>完成烧录后便可以将TF卡插入Jetson Xavier NX了，其插入的口特别隐蔽，注意耐心寻找或者直接看盒子里附带的手册。</p>
+<p>插入后，启动Jetson Xavier NX便来到了一个正常的Ubuntu 22.04.2 LTS配置环节，没有任何难度。综上，该环节最难的步骤应该是以恰当的力度将TF卡插入NX。</p>
 <p>一般而言，我们手上的NX应该是实验室提供的，在此我建议各位在配置时设置合理的、可推测的密码（比如与用户名一致），避免后人抓破脑袋也进不去系统。</p>
 <h2 id="环境配置">2. 环境配置</h2>
 <p>完成Ubuntu的安装后，我们终于可以进入较为简单的环境配置环节了，开心！在继续之前，我们先来更新一下吧：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
-<h3 id="anaconda">2.1. Anaconda</h3>
+<h3 id="Anaconda">2.1. Anaconda</h3>
 <p>这世界上不能没有Anaconda的存在，绝不能！遗憾的是，由于Anaconda不支持aarch64，因此我们只能在NX上含泪放弃它了。</p>
-<h4 id="archiconda或是其他...">2.1.1. Archiconda或是其他...？</h4>
+<h4 id="Archiconda或是其他…？">2.1.1. Archiconda或是其他…？</h4>
 <p>虽然没有Anaconda，但我们拥有很多的替代选项，如Archiconda、Miniforge等。此处我选择的是Archiconda，但我推荐后人使用Miniforge。你可以在<a target="_blank" rel="noopener" href="https://github.com/Archiconda/build-tools">Archiconda的GitHub仓库</a>下载Archiconda，或者在<a target="_blank" rel="noopener" href="https://github.com/conda-forge/miniforge">Miniforge的Github仓库</a>下载Miniforge。</p>
 <p>在本文的撰写日期（2023年6月24日），Archiconda的最新版本为0.2.3。当然，它已经不再更新了。</p>
-<h4 id="安装配置与测试">2.1.2. 安装、配置与测试</h4>
+<h4 id="安装、配置与测试">2.1.2. 安装、配置与测试</h4>
 <p>可以使用如下命令进行安装，整个过程一直回车确认即可。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Archiconda3-0.2.3-Linux-aarch64.sh</span><br></pre></td></tr></table></figure>
 <p>接着执行</p>
@@ -269,30 +262,26 @@ LTS配置环节，没有任何难度。综上，该环节最难的步骤应该�
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/local/cuda/lib64:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/local/cuda/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
 <p>最后，再来一套组合拳：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br><span class="line">sudo apt-get dist-upgrade</span><br><span class="line">sudo apt-get install python3-pip libopenblas-base libopenmpi-dev</span><br></pre></td></tr></table></figure>
-<h3 id="pytorch与torchvision">2.2. PyTorch与torchvision</h3>
+<h3 id="PyTorch与torchvision">2.2. PyTorch与torchvision</h3>
 <p>PyTorch的配置最为重要，但先别急，直接<code>conda install pytorch torchvision torchaudio pytorch-cuda=11.7 -c pytorch -c nvidia</code>什么的自然是不行的。</p>
-<h4 id="安装pytorch-for-jetson-platform">2.2.1. 安装PyTorch for Jetson
-Platform</h4>
+<h4 id="安装PyTorch-for-Jetson-Platform">2.2.1. 安装PyTorch for Jetson Platform</h4>
 <p>访问<a target="_blank" rel="noopener" href="https://forums.developer.nvidia.com/t/pytorch-for-jetson/72048">NVIDIA论坛</a>，选择所需的PyTorch版本。</p>
 <img src="/2023/06/24/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Setting-up-Jetson-Xavier-NX-from-scratch/pytorch_install.png" class>
 <p>还记得镜像描述中的这句话吗？</p>
 <blockquote>
-<p>This SD card image works for the Jetson Xavier NX Developer Kit and
-is built with JetPack 5.0.2</p>
+<p>This SD card image works for the Jetson Xavier NX Developer Kit and is built with JetPack 5.0.2</p>
 </blockquote>
 <div class="warning">
-<p><strong>注意</strong>
+<p><strong>注意</strong><br>
 没错，一定要选择与JetPack版本相匹配的PyTorch版本。</p>
 </div>
-<p>如果你是以本文顺序从头配置的，自然不必注意，但如果你手上的NX或其他设备是前人已配置完成的，请一定特别注意。回到安装上，此处我选择的版本是PyTorch
-v2.0.0。常有人说PyTorch 2.0.0不好什么的，请直接给他一拳。</p>
+<p>如果你是以本文顺序从头配置的，自然不必注意，但如果你手上的NX或其他设备是前人已配置完成的，请一定特别注意。回到安装上，此处我选择的版本是PyTorch v2.0.0。常有人说PyTorch 2.0.0不好什么的，请直接给他一拳。</p>
 <p>下载完成后进入conda环境，执行下列命令进行安装（具体包名视具体选择而定）：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip3 install torch−2.0.0+nv23.05−cp38−cp38−linux_aarch64.whl</span><br></pre></td></tr></table></figure>
 <p>为测试安装是否成功，在Python环境下输入下述代码应能看到PyTorch版本。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.__version__</span><br></pre></td></tr></table></figure>
 <h4 id="torchvision">2.2.2. torchvision</h4>
-<p>还是经典老话，请根据PyTorch版本选择正确的torchvision版本，具体对应关系请见<a target="_blank" rel="noopener" href="https://github.com/pytorch/vision">torchvision的Github仓库</a>。按前文选择的PyTorch
-v2.0.0，此处我们选择torchvision v0.15进行安装。执行：</p>
+<p>还是经典老话，请根据PyTorch版本选择正确的torchvision版本，具体对应关系请见<a target="_blank" rel="noopener" href="https://github.com/pytorch/vision">torchvision的Github仓库</a>。按前文选择的PyTorch v2.0.0，此处我们选择torchvision v0.15进行安装。执行：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> −b release/0.15 https://github.com/pytorch/vision.git</span><br></pre></td></tr></table></figure>
 <p>然后在<code>vision</code>目录下执行以下命令便可完成安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> BUILD_VERSION=0.15.0</span><br><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
@@ -301,13 +290,10 @@ v2.0.0，此处我们选择torchvision v0.15进行安装。执行：</p>
 <p>应能看到torchvision版本号。对了，别忘了试试</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch</span><br><span class="line">torch.cuda.is_available()</span><br></pre></td></tr></table></figure>
 <p>看看输出是不是<code>True</code>。</p>
-<p>最后，推荐阅读<a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html">Installing
-PyTorch for Jetson Platform</a>。</p>
+<p>最后，推荐阅读<a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/frameworks/install-pytorch-jetson-platform/index.html">Installing PyTorch for Jetson Platform</a>。</p>
 <h2 id="可供参考的其他博文">3. 可供参考的其他博文</h2>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44312422/article/details/122256752">yolov5
-部署jetson nano（通用） 保姆级教学</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41319718/article/details/119607668">YOLOV5环境快速配置
-Jetson Xavier NX 版本（基本详细）</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44312422/article/details/122256752">yolov5 部署jetson nano（通用） 保姆级教学</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41319718/article/details/119607668">YOLOV5环境快速配置 Jetson Xavier NX 版本（基本详细）</a></p>
 
     </div>
 
@@ -393,8 +379,7 @@ Jetson Xavier NX 版本（基本详细）</a></p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%83%A7%E5%BD%95"><span class="nav-text">1. 镜像烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD"><span class="nav-text">1.1. 镜像下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%A7%E5%BD%95"><span class="nav-text">1.2. 烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%83%A7%E5%BD%95%E5%B7%A5%E5%85%B7%E4%B8%8Etf%E5%8D%A1"><span class="nav-text">1.2.1. 准备烧录工具与TF卡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E7%83%A7%E5%BD%95"><span class="nav-text">1.2.2. 进行烧录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">1.2.3. 配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">2. 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#anaconda"><span class="nav-text">2.1. Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#archiconda%E6%88%96%E6%98%AF%E5%85%B6%E4%BB%96..."><span class="nav-text">2.1.1. Archiconda或是其他...？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="nav-text">2.1.2. 安装、配置与测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pytorch%E4%B8%8Etorchvision"><span class="nav-text">2.2. PyTorch与torchvision</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85pytorch-for-jetson-platform"><span class="nav-text">2.2.1. 安装PyTorch for Jetson
-Platform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#torchvision"><span class="nav-text">2.2.2. torchvision</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BE%9B%E5%8F%82%E8%80%83%E7%9A%84%E5%85%B6%E4%BB%96%E5%8D%9A%E6%96%87"><span class="nav-text">3. 可供参考的其他博文</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E7%83%A7%E5%BD%95"><span class="nav-text">1. 镜像烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%95%9C%E5%83%8F%E4%B8%8B%E8%BD%BD"><span class="nav-text">1.1. 镜像下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%A7%E5%BD%95"><span class="nav-text">1.2. 烧录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E7%83%A7%E5%BD%95%E5%B7%A5%E5%85%B7%E4%B8%8ETF%E5%8D%A1"><span class="nav-text">1.2.1. 准备烧录工具与TF卡</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E8%A1%8C%E7%83%A7%E5%BD%95"><span class="nav-text">1.2.2. 进行烧录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">1.2.3. 配置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-text">2. 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Anaconda"><span class="nav-text">2.1. Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Archiconda%E6%88%96%E6%98%AF%E5%85%B6%E4%BB%96%E2%80%A6%EF%BC%9F"><span class="nav-text">2.1.1. Archiconda或是其他…？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE%E4%B8%8E%E6%B5%8B%E8%AF%95"><span class="nav-text">2.1.2. 安装、配置与测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PyTorch%E4%B8%8Etorchvision"><span class="nav-text">2.2. PyTorch与torchvision</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85PyTorch-for-Jetson-Platform"><span class="nav-text">2.2.1. 安装PyTorch for Jetson Platform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#torchvision"><span class="nav-text">2.2.2. torchvision</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%BE%9B%E5%8F%82%E8%80%83%E7%9A%84%E5%85%B6%E4%BB%96%E5%8D%9A%E6%96%87"><span class="nav-text">3. 可供参考的其他博文</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
