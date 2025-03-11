@@ -325,7 +325,9 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>PyTorch 中有很多乘法，搞晕了都，感觉还是有必要整理一下，顺便复习一下我只考了 61 分的线代。 <span id="more"></span></p>
+        <p>PyTorch
+中有很多乘法，搞晕了都，感觉还是有必要整理一下，顺便复习一下我只考了 61
+分的线代。 <span id="more"></span></p>
 <h2 id="乘法">1. 乘法</h2>
 <h3 id="torch.mul">1.1. TORCH.MUL</h3>
 <p>函数原型：<code>torch.mul(input, other, *, out=None) → Tensor</code>。</p>
@@ -351,12 +353,19 @@ mjx-container[display="true"] + br {
 <ul>
 <li>若输入均为 1D tensor，返回点乘结果。</li>
 <li>若输入均为 2D tensor，返回矩阵乘法结果。</li>
-<li>若<code>input</code>为 1D tensor，<code>other</code>为 2D tensor，则先将<code>input</code>增加 1D 以使其扩至 2D 后再进行矩阵乘法，最后去掉<code>input</code>增加的 1D。</li>
-<li>若<code>input</code>为 2D tensor，<code>other</code>为 1D tensor，则先将<code>other</code>增加 1D 以使其扩至 2D 后再进行矩阵乘法，最后去掉<code>other</code>增加的 1D。（怎么感觉在说废话）</li>
-<li>若输入均是大于 1D 的 tensor，且有一个是 ND 的 tensor。。。太复杂了，如果之后我用到了再补充。</li>
+<li>若<code>input</code>为 1D tensor，<code>other</code>为 2D
+tensor，则先将<code>input</code>增加 1D 以使其扩至 2D
+后再进行矩阵乘法，最后去掉<code>input</code>增加的 1D。</li>
+<li>若<code>input</code>为 2D tensor，<code>other</code>为 1D
+tensor，则先将<code>other</code>增加 1D 以使其扩至 2D
+后再进行矩阵乘法，最后去掉<code>other</code>增加的
+1D。（怎么感觉在说废话）</li>
+<li>若输入均是大于 1D 的 tensor，且有一个是 ND 的
+tensor。。。太复杂了，如果之后我用到了再补充。</li>
 </ul>
 <h2 id="主要参考内容">2. 主要参考内容</h2>
-<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">PYTORCH DOCUMENTATION</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">PYTORCH
+DOCUMENTATION</a></p>
 
     </div>
 
@@ -453,7 +462,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -493,7 +502,7 @@ mjx-container[display="true"] + br {
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

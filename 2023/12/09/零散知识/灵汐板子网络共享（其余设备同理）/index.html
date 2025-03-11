@@ -219,7 +219,8 @@
         <p>最近在搞灵汐板子上的Cpp部署。现在把这一类板子的部署方法都写一下：</p>
 <span id="more"></span>
 <h2 id="连接板子">1. 连接板子</h2>
-<p>当然，想修改板子的网络配置首先需要连上板子。以灵汐板子为例，其需要将主机的IP设置成与板子IP在同一网段。 我们首先将主机IP设置为<code>192.168.1.50</code>，登陆板子即可。</p>
+<p>当然，想修改板子的网络配置首先需要连上板子。以灵汐板子为例，其需要将主机的IP设置成与板子IP在同一网段。
+我们首先将主机IP设置为<code>192.168.1.50</code>，登陆板子即可。</p>
 <h3 id="具体配置">1.1. 具体配置</h3>
 <p>用<code>cd /etc/netplan</code>进入配置目录下，使用<code>sudo vi 01-network-manager-all.yaml</code>对其进行修改，以下是修改的一个示例：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">NetworkManager</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">eth0:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span><span class="string">/24</span>]</span><br><span class="line">    <span class="attr">eth1:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.137</span><span class="number">.2</span><span class="string">/24</span>]</span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">to:</span> <span class="string">default</span></span><br><span class="line">          <span class="attr">via:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.1</span></span><br><span class="line">      <span class="attr">nameservers:</span></span><br><span class="line">        <span class="attr">addresses:</span> [<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>]</span><br><span class="line">        <span class="attr">addresses:</span> [<span class="number">114.114</span><span class="number">.114</span><span class="number">.114</span>]</span><br></pre></td></tr></table></figure>
@@ -247,7 +248,8 @@
 </ol>
 <h2 id="网络共享">2. 网络共享</h2>
 <p>前一步骤中我们将<code>eth1</code>网口设置为了<code>192.168.137.2</code>，所以此处记得先将网线从<code>eth0</code>插到<code>eth1</code>上。</p>
-<p>打开<code>Control Panel - Network and Sharing Center</code>，选择左侧<code>Change adapter settings</code>。 双击<code>Wi-Fi</code>，选择<code>Properties - Sharing - Internet Connection Sharing</code>，勾选所有选项，如下图所示。</p>
+<p>打开<code>Control Panel - Network and Sharing Center</code>，选择左侧<code>Change adapter settings</code>。
+双击<code>Wi-Fi</code>，选择<code>Properties - Sharing - Internet Connection Sharing</code>，勾选所有选项，如下图所示。</p>
 <div style="width:70%;margin:auto">
 <img src="/2023/12/09/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/%E7%81%B5%E6%B1%90%E6%9D%BF%E5%AD%90%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB%EF%BC%88%E5%85%B6%E4%BD%99%E8%AE%BE%E5%A4%87%E5%90%8C%E7%90%86%EF%BC%89/fig2.png" class title="勾选所有选项">
 </div>
@@ -282,8 +284,8 @@
       <i class="fa fa-chevron-left"></i> 使vscode保存ssh密码
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/" rel="next" title="Integrally Migrating Pre-trained Transformer Encoder-decoders for Visual Object Detection">
-      Integrally Migrating Pre-trained Transformer Encoder-decoders for Visual Object Detection <i class="fa fa-chevron-right"></i>
+    <a href="/2024/03/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Masked-Autoencoders-Are-Scalable-Vision-Learners/" rel="next" title="Masked Autoencoders Are Scalable Vision Learners">
+      Masked Autoencoders Are Scalable Vision Learners <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -359,7 +361,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -399,7 +401,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

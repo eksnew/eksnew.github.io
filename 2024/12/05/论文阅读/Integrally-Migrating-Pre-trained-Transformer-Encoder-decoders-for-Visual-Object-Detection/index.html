@@ -20,24 +20,24 @@
     var CONFIG = {"hostname":"eksnew.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="ICCV 2023的工作。  简单总结 将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。 保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。 预训练网络有更大潜力。文章会讲故事能加分。  1. 引入 1.1. 现有问题 现代目标检测器除backbone外，有占据相当大比例参数的部件（">
+  <meta name="description" content="ICCV 2023的工作。  简单总结 将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。 保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。 预训练网络有更大潜力。文章会讲故事能加分。  1. 引入 1.1. 现有问题 现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Integrally Migrating Pre-trained Transformer Encoder-decoders for Visual Object Detection">
-<meta property="og:url" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/index.html">
+<meta property="og:url" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/index.html">
 <meta property="og:site_name" content="eksnew&#39;s Blog">
-<meta property="og:description" content="ICCV 2023的工作。  简单总结 将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。 保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。 预训练网络有更大潜力。文章会讲故事能加分。  1. 引入 1.1. 现有问题 现代目标检测器除backbone外，有占据相当大比例参数的部件（">
+<meta property="og:description" content="ICCV 2023的工作。  简单总结 将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。 保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。 预训练网络有更大潜力。文章会讲故事能加分。  1. 引入 1.1. 现有问题 现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png">
-<meta property="og:image" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/simple_exp.png">
-<meta property="og:image" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture.png">
-<meta property="og:image" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/exp2.png">
-<meta property="article:published_time" content="2024-03-08T11:44:06.294Z">
+<meta property="og:image" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png">
+<meta property="og:image" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/simple_exp.png">
+<meta property="og:image" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture.png">
+<meta property="og:image" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/exp2.png">
+<meta property="article:published_time" content="2024-12-05T02:14:31.467Z">
 <meta property="article:modified_time" content="2024-03-21T13:02:03.355Z">
 <meta property="article:author" content="eksnew">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png">
+<meta name="twitter:image" content="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png">
 
-<link rel="canonical" href="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/">
+<link rel="canonical" href="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/">
 
 
 <script id="page-configurations">
@@ -277,7 +277,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/">
+    <link itemprop="mainEntityOfPage" href="https://eksnew.github.io/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/214+308_2_pi.png">
@@ -300,7 +300,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">Posted on</span>
 
-              <time title="Created: 2024-03-08 19:44:06" itemprop="dateCreated datePublished" datetime="2024-03-08T19:44:06+08:00">2024-03-08</time>
+              <time title="Created: 2024-12-05 10:14:31" itemprop="dateCreated datePublished" datetime="2024-12-05T10:14:31+08:00">2024-12-05</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -332,16 +332,20 @@ mjx-container[display="true"] + br {
       
         <p>ICCV 2023的工作。</p>
 <div class="tips">
-<p><strong>简单总结</strong> 将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。 保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。</p>
+<p><strong>简单总结</strong>
+将MAE预训练好的Encoder-Decoder整体迁移到目标检测中，比只迁移Encoder的性能、泛化性更好。
+保证特征提取路径与预训练模型接近可提升效果（来自预训练decoder的上下文建模能力）。</p>
 <p>预训练网络有更大潜力。文章会讲故事能加分。</p>
 </div>
 <h2 id="引入">1. 引入</h2>
 <h3 id="现有问题">1.1. 现有问题</h3>
-<p>现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN等等）需要从头开始训练—— 无法利用已在大型数据集上预训练的表示模型的优势。</p>
+<p>现代目标检测器除backbone外，有占据相当大比例参数的部件（RPN、FPN等等）需要从头开始训练——
+无法利用已在大型数据集上预训练的表示模型的优势。</p>
 <h3 id="what-to-do">1.2. What to do</h3>
-<p>试图充分利用预训练模型以提升检测器泛化能力——将预训练的Transformer的encoder-decoders进行整体迁移， 去构建一个完全预训练且与预训练模型尽可能一致的特征提取路径。</p>
+<p>试图充分利用预训练模型以提升检测器泛化能力——将预训练的Transformer的encoder-decoders进行整体迁移，
+去构建一个完全预训练且与预训练模型尽可能一致的特征提取路径。</p>
 <div style="width:40%;margin:auto">
-<img src="/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png" class title="结构对比图">
+<img src="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture_comparison.png" class title="结构对比图">
 </div>
 <span id="more"></span>
 <h2 id="模型设计与方法论">2. 模型设计与方法论</h2>
@@ -355,22 +359,31 @@ mjx-container[display="true"] + br {
 </ul>
 结果如下：
 <div style="width:50%;margin:auto">
-<img src="/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/simple_exp.png" class title="初步实验">
+<img src="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/simple_exp.png" class title="初步实验">
 </div>
 <p>这说明预训练decoder的上下文建模能力有益于对象定位，接下来便是如何迁移的问题了。</p>
 <h3 id="整体结构">2.2. 整体结构</h3>
-<p>结构上采用MAE预训练的ViT encoder作为backbone、拿decoder当检测头， 接着在encoder-decoder上添加线性输出层以实现对象分类与定位。 此外，imTED还引入结合了FPN与完全预训练模型的优点的多尺度特征调制器(multi-scale feature modulator, MFM)， 以增加多尺度目标检测的能力。</p>
+<p>结构上采用MAE预训练的ViT encoder作为backbone、拿decoder当检测头，
+接着在encoder-decoder上添加线性输出层以实现对象分类与定位。
+此外，imTED还引入结合了FPN与完全预训练模型的优点的多尺度特征调制器(multi-scale
+feature modulator, MFM)， 以增加多尺度目标检测的能力。</p>
 <div style="width:70%;margin:auto">
-<img src="/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture.png" class title="imTED结构图">
+<img src="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/architecture.png" class title="imTED结构图">
 </div>
 <h4 id="迁移设计过程">2.2.1. 迁移设计过程</h4>
 <div style="width:70%;margin:auto">
-<img src="/2024/03/08/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/exp2.png" class title="迁移设计过程">
+<img src="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Integrally-Migrating-Pre-trained-Transformer-Encoder-decoders-for-Visual-Object-Detection/exp2.png" class title="迁移设计过程">
 </div>
 <ul>
-<li><p><strong>简单迁移</strong> 直接把检测头替换成经过预训练的decoder，如上图(a)。 不足之处在于经预训练的encoder与decoder间存在一个随机初始化的FPN， 经随机初始化的FPN处理的特征分布与encoder输出的特征分布肯定是不同，会破坏预训练decoder的特征流。</p></li>
-<li><p><strong>去掉FPN</strong> 尝试直接把encoder最后一层的特征丢入decoder，如上图(b)。可行，但失去了多尺度特征。</p></li>
-<li><p><strong>结合一下</strong> 分两路进行，一路直接取encoder最后一层的特征，一路取FPN输出的多尺度特征，最后组合，如上图(c)。 论文唯一的公式：</p></li>
+<li><p><strong>简单迁移</strong>
+直接把检测头替换成经过预训练的decoder，如上图(a)。
+不足之处在于经预训练的encoder与decoder间存在一个随机初始化的FPN，
+经随机初始化的FPN处理的特征分布与encoder输出的特征分布肯定是不同，会破坏预训练decoder的特征流。</p></li>
+<li><p><strong>去掉FPN</strong>
+尝试直接把encoder最后一层的特征丢入decoder，如上图(b)。可行，但失去了多尺度特征。</p></li>
+<li><p><strong>结合一下</strong>
+分两路进行，一路直接取encoder最后一层的特征，一路取FPN输出的多尺度特征，最后组合，如上图(c)。
+论文唯一的公式：</p></li>
 </ul>
 <p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.357ex;" xmlns="http://www.w3.org/2000/svg" width="18.003ex" height="1.895ex" role="img" focusable="false" viewbox="0 -680 7957.2 837.8"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"/></g><g data-mml-node="mo" transform="translate(1026.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"/></g><g data-mml-node="msub" transform="translate(2082.6,0)"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"/></g><g data-mml-node="TeXAtom" transform="translate(676,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g><g data-mml-node="mi" transform="translate(469,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g></g></g><g data-mml-node="mo" transform="translate(3694,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"/></g><g data-mml-node="mi" transform="translate(4694.3,0)"><path data-c="1D6FC" d="M34 156Q34 270 120 356T309 442Q379 442 421 402T478 304Q484 275 485 237V208Q534 282 560 374Q564 388 566 390T582 393Q603 393 603 385Q603 376 594 346T558 261T497 161L486 147L487 123Q489 67 495 47T514 26Q528 28 540 37T557 60Q559 67 562 68T577 70Q597 70 597 62Q597 56 591 43Q579 19 556 5T512 -10H505Q438 -10 414 62L411 69L400 61Q390 53 370 41T325 18T267 -2T203 -11Q124 -11 79 39T34 156ZM208 26Q257 26 306 47T379 90L403 112Q401 255 396 290Q382 405 304 405Q235 405 183 332Q156 292 139 224T121 120Q121 71 146 49T208 26Z"/></g><g data-mml-node="mo" transform="translate(5556.5,0)"><path data-c="2217" d="M229 286Q216 420 216 436Q216 454 240 464Q241 464 245 464T251 465Q263 464 273 456T283 436Q283 419 277 356T270 286L328 328Q384 369 389 372T399 375Q412 375 423 365T435 338Q435 325 425 315Q420 312 357 282T289 250L355 219L425 184Q434 175 434 161Q434 146 425 136T401 125Q393 125 383 131T328 171L270 213Q283 79 283 63Q283 53 276 44T250 35Q231 35 224 44T216 63Q216 80 222 143T229 213L171 171Q115 130 110 127Q106 124 100 124Q87 124 76 134T64 161Q64 166 64 169T67 175T72 181T81 188T94 195T113 204T138 215T170 230T210 250L74 315Q65 324 65 338Q65 353 74 363T98 374Q106 374 116 368T171 328L229 286Z"/></g><g data-mml-node="msub" transform="translate(6278.7,0)"><g data-mml-node="mi"><path data-c="1D439" d="M48 1Q31 1 31 11Q31 13 34 25Q38 41 42 43T65 46Q92 46 125 49Q139 52 144 61Q146 66 215 342T285 622Q285 629 281 629Q273 632 228 634H197Q191 640 191 642T193 659Q197 676 203 680H742Q749 676 749 669Q749 664 736 557T722 447Q720 440 702 440H690Q683 445 683 453Q683 454 686 477T689 530Q689 560 682 579T663 610T626 626T575 633T503 634H480Q398 633 393 631Q388 629 386 623Q385 622 352 492L320 363H375Q378 363 398 363T426 364T448 367T472 374T489 386Q502 398 511 419T524 457T529 475Q532 480 548 480H560Q567 475 567 470Q567 467 536 339T502 207Q500 200 482 200H470Q463 206 463 212Q463 215 468 234T473 274Q473 303 453 310T364 317H309L277 190Q245 66 245 60Q245 46 334 46H359Q365 40 365 39T363 19Q359 6 353 0H336Q295 2 185 2Q120 2 86 2T48 1Z"/></g><g data-mml-node="TeXAtom" transform="translate(676,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D45A" d="M21 287Q22 293 24 303T36 341T56 388T88 425T132 442T175 435T205 417T221 395T229 376L231 369Q231 367 232 367L243 378Q303 442 384 442Q401 442 415 440T441 433T460 423T475 411T485 398T493 385T497 373T500 364T502 357L510 367Q573 442 659 442Q713 442 746 415T780 336Q780 285 742 178T704 50Q705 36 709 31T724 26Q752 26 776 56T815 138Q818 149 821 151T837 153Q857 153 857 145Q857 144 853 130Q845 101 831 73T785 17T716 -10Q669 -10 648 17T627 73Q627 92 663 193T700 345Q700 404 656 404H651Q565 404 506 303L499 291L466 157Q433 26 428 16Q415 -11 385 -11Q372 -11 364 -4T353 8T350 18Q350 29 384 161L420 307Q423 322 423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 181Q151 335 151 342Q154 357 154 369Q154 405 129 405Q107 405 92 377T69 316T57 280Q55 278 41 278H27Q21 284 21 287Z"/></g><g data-mml-node="mi" transform="translate(878,0)"><path data-c="1D460" d="M131 289Q131 321 147 354T203 415T300 442Q362 442 390 415T419 355Q419 323 402 308T364 292Q351 292 340 300T328 326Q328 342 337 354T354 372T367 378Q368 378 368 379Q368 382 361 388T336 399T297 405Q249 405 227 379T204 326Q204 301 223 291T278 274T330 259Q396 230 396 163Q396 135 385 107T352 51T289 7T195 -10Q118 -10 86 19T53 87Q53 126 74 143T118 160Q133 160 146 151T160 120Q160 94 142 76T111 58Q109 57 108 57T107 55Q108 52 115 47T146 34T201 27Q237 27 263 38T301 66T318 97T323 122Q323 150 302 164T254 181T195 196T148 231Q131 256 131 289Z"/></g></g></g></g></g></svg></mjx-container></span></p>
 <h2 id="后续工作">3. 后续工作</h2>
@@ -395,12 +408,12 @@ mjx-container[display="true"] + br {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2023/12/09/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/%E7%81%B5%E6%B1%90%E6%9D%BF%E5%AD%90%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB%EF%BC%88%E5%85%B6%E4%BD%99%E8%AE%BE%E5%A4%87%E5%90%8C%E7%90%86%EF%BC%89/" rel="prev" title="灵汐板子网络共享（其余设备同理）">
-      <i class="fa fa-chevron-left"></i> 灵汐板子网络共享（其余设备同理）
+    <a href="/2024/12/05/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Swin-Transformer-Hierarchical-Vision-Transformer-using-Shifted-Windows/" rel="prev" title="Swin Transformer: Hierarchical Vision Transformer using Shifted Windows">
+      <i class="fa fa-chevron-left"></i> Swin Transformer: Hierarchical Vision Transformer using Shifted Windows
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/03/09/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB/Masked-Autoencoders-Are-Scalable-Vision-Learners/" rel="next" title="Masked Autoencoders Are Scalable Vision Learners">
-      Masked Autoencoders Are Scalable Vision Learners <i class="fa fa-chevron-right"></i>
+    <a href="/2024/12/13/Heap/" rel="next" title="Heap">
+      Heap <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -476,7 +489,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -516,7 +529,7 @@ mjx-container[display="true"] + br {
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

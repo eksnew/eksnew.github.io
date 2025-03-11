@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"eksnew.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下 GitHub Pages 与 Hexo 的搭配，简单记录如下： 1. Github 配置 只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。 如果有问题，可以参考Github Pages 官方配置文档。 2. Hexo 的配置">
+  <meta name="description" content="最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下 GitHub Pages 与 Hexo 的搭配，简单记录如下： 1. Github 配置 只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。 如果有问题，可以参考Github Pages 官方配置文档。 2. Hexo 的配置">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo（一）：Hexo与GitHub Pages的基础配置">
 <meta property="og:url" content="https://eksnew.github.io/2022/11/21/%E5%90%84%E7%B1%BB%E9%85%8D%E7%BD%AE/Basic-configuration-of-Hexo-with-GitHub-Pages/index.html">
 <meta property="og:site_name" content="eksnew&#39;s Blog">
-<meta property="og:description" content="最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下 GitHub Pages 与 Hexo 的搭配，简单记录如下： 1. Github 配置 只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。 如果有问题，可以参考Github Pages 官方配置文档。 2. Hexo 的配置">
+<meta property="og:description" content="最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下 GitHub Pages 与 Hexo 的搭配，简单记录如下： 1. Github 配置 只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。 如果有问题，可以参考Github Pages 官方配置文档。 2. Hexo 的配置">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-11-21T13:34:45.000Z">
-<meta property="article:modified_time" content="2024-03-21T13:03:55.089Z">
+<meta property="article:modified_time" content="2025-02-19T14:08:19.626Z">
 <meta property="article:author" content="eksnew">
 <meta property="article:tag" content="Hexo">
 <meta property="article:tag" content="中文">
@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2024-03-21 21:03:55" itemprop="dateModified" datetime="2024-03-21T21:03:55+08:00">2024-03-21</time>
+                <time title="Modified: 2025-02-19 22:08:19" itemprop="dateModified" datetime="2025-02-19T22:08:19+08:00">2025-02-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,9 +215,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下 GitHub Pages 与 Hexo 的搭配，简单记录如下：</p>
+        <p>最近想要配置一下自己的博客，尽可能逃避越南的审查，于是研究了一下
+GitHub Pages 与 Hexo 的搭配，简单记录如下：</p>
 <h2 id="github-配置">1. Github 配置</h2>
-<p>只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。 如果有问题，可以参考<a target="_blank" rel="noopener" href="https://pages.github.com/">Github Pages 官方配置文档</a>。</p>
+<p>只需创建 GitHub Pages 页面即可，这个非常简单，点点手指就可以啦~详略。
+如果有问题，可以参考<a target="_blank" rel="noopener" href="https://pages.github.com/">Github Pages
+官方配置文档</a>。</p>
 <h2 id="hexo-的配置">2. Hexo 的配置</h2>
 <span id="more"></span>
 <h3 id="bell所需前置条件">2.1. :bell:所需前置条件</h3>
@@ -226,8 +229,19 @@
 <li><p>Git。都是用 GitHub 的人，本地当然有 Git 啦，直接忽视。</p></li>
 <li><p>Node.js。可以使用</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node --version</span><br></pre></td></tr></table></figure>
-<p>来检查你是否安装了 Node.js。如果安装了，则应显示 Node.js 的版本号。如果没安装，可以前往<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js 官网</a>下载安装。 安装时别忘了勾选 Add to PATH（默认勾选）。</p></li>
+<p>来检查你是否安装了 Node.js。如果安装了，则应显示 Node.js
+的版本号。如果没安装，可以前往<a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">Node.js 官网</a>下载安装。
+安装时别忘了勾选 Add to PATH（默认勾选）。</p></li>
 </ul>
+<h4 id="nvm-installation-on-macos">2.1.1. nvm installation on macOS</h4>
+<p>nvm is a version manager for node.js. It allows you to install
+multiple versions of node.js and switch between them.</p>
+<p>To install nvm, run:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade</span><br><span class="line">brew install nvm</span><br><span class="line">echo &#x27;export NVM_DIR=&quot;$HOME/.nvm&quot;&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">echo &#x27;[ -s &quot;$(brew --prefix nvm)/nvm.sh&quot; ] &amp;&amp; \. &quot;$(brew --prefix nvm)/nvm.sh&quot;&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">echo &#x27;[ -s &quot;$(brew --prefix nvm)/etc/bash_completion.d/nvm&quot; ] &amp;&amp; \. &quot;$(brew --prefix nvm)/etc/bash_completion.d/nvm&quot;&#x27; &gt;&gt; ~/.zshrc</span><br><span class="line">source ~/.zshrc</span><br></pre></td></tr></table></figure>
+<h4 id="install-node.js-using-nvm">2.1.2. Install node.js using nvm</h4>
+<p>After the installation of nvm, you can follow the instructions listed
+on the <a target="_blank" rel="noopener" href="https://nodejs.org/en/download/">nvm official
+website</a> to install node.js.</p>
 <h3 id="wrench开始安装">2.2. :wrench:开始安装</h3>
 <p>现在可以使用 npm 安装 Hexo 啦。使用：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
@@ -245,13 +259,19 @@
 <h3 id="package创建">3.1. :package:创建</h3>
 <p>现在可以用：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new &quot;喜欢的博客名&quot;</span><br></pre></td></tr></table></figure>
-<p>来创建一篇新文章。马上就开始撰写（或者 <code>Ctrl CV</code>）你的第一篇文章罢！ 当然，该命令还有其他参数，具体请参考文末所附的官方文档链接。</p>
+<p>来创建一篇新文章。马上就开始撰写（或者
+<code>Ctrl CV</code>）你的第一篇文章罢！
+当然，该命令还有其他参数，具体请参考文末所附的官方文档链接。</p>
 <h3 id="tada开始部署">3.2. :tada:开（始）！部（署）！</h3>
 <p>当你完成了你的文章，就可以使用</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>将你的博客发布到 GitHub Pages 上啦。如果出现<code>ERROR Deployer not found: git</code>报错，请尝试： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
-<p>需要创建文章的草稿则可以使用<code>hexo new draft "balabala"</code>，预览草稿就用<code>hexo s --draft</code>。 日后如果想将草稿发布为正式文章，用<code>hexo p "balabala"</code>即可。</p>
-<p>最后，非常推荐阅读<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo 官方中文文档</a>以获取更为详细的信息，本文只是做了非常浅显、粗略、无价值的介绍。</p>
+<p>将你的博客发布到 GitHub Pages
+上啦。如果出现<code>ERROR Deployer not found: git</code>报错，请尝试：
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure></p>
+<p>需要创建文章的草稿则可以使用<code>hexo new draft "balabala"</code>，预览草稿就用<code>hexo s --draft</code>。
+日后如果想将草稿发布为正式文章，用<code>hexo p "balabala"</code>即可。</p>
+<p>最后，非常推荐阅读<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/">Hexo
+官方中文文档</a>以获取更为详细的信息，本文只是做了非常浅显、粗略、无价值的介绍。</p>
 <p>感谢你看到这里，本文到此结束~</p>
 
     </div>
@@ -337,7 +357,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#github-%E9%85%8D%E7%BD%AE"><span class="nav-text">1. Github 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">2. Hexo 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bell%E6%89%80%E9%9C%80%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-text">2.1. :bell:所需前置条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wrench%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-text">2.2. :wrench:开始安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nut_and_bolt%E9%83%A8%E7%BD%B2%E5%89%8D%E7%9A%84%E6%9C%80%E5%90%8E%E5%B7%A5%E4%BD%9C"><span class="nav-text">2.3. :nut_and_bolt:部署前的最后工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%86%99%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E7%84%B6%E5%90%8E%E9%83%A8%E7%BD%B2"><span class="nav-text">3. 撰写第一篇博客，然后部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package%E5%88%9B%E5%BB%BA"><span class="nav-text">3.1. :package:创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tada%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="nav-text">3.2. :tada:开（始）！部（署）！</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#github-%E9%85%8D%E7%BD%AE"><span class="nav-text">1. Github 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">2. Hexo 的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#bell%E6%89%80%E9%9C%80%E5%89%8D%E7%BD%AE%E6%9D%A1%E4%BB%B6"><span class="nav-text">2.1. :bell:所需前置条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nvm-installation-on-macos"><span class="nav-text">2.1.1. nvm installation on macOS</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#install-node.js-using-nvm"><span class="nav-text">2.1.2. Install node.js using nvm</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#wrench%E5%BC%80%E5%A7%8B%E5%AE%89%E8%A3%85"><span class="nav-text">2.2. :wrench:开始安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nut_and_bolt%E9%83%A8%E7%BD%B2%E5%89%8D%E7%9A%84%E6%9C%80%E5%90%8E%E5%B7%A5%E4%BD%9C"><span class="nav-text">2.3. :nut_and_bolt:部署前的最后工作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%86%99%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2%E7%84%B6%E5%90%8E%E9%83%A8%E7%BD%B2"><span class="nav-text">3. 撰写第一篇博客，然后部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#package%E5%88%9B%E5%BB%BA"><span class="nav-text">3.1. :package:创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tada%E5%BC%80%E5%A7%8B%E9%83%A8%E7%BD%B2"><span class="nav-text">3.2. :tada:开（始）！部（署）！</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -353,7 +373,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">43</span>
+          <span class="site-state-item-count">47</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -393,7 +413,7 @@
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2024</span>
+  <span itemprop="copyrightYear">2025</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
