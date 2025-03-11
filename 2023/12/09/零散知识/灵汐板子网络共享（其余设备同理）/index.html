@@ -219,45 +219,37 @@
         <p>最近在搞灵汐板子上的Cpp部署。现在把这一类板子的部署方法都写一下：</p>
 <span id="more"></span>
 <h2 id="连接板子">1. 连接板子</h2>
-<p>当然，想修改板子的网络配置首先需要连上板子。以灵汐板子为例，其需要将主机的IP设置成与板子IP在同一网段。我们首先将主机IP设置为<code>192.168.1.50</code>，登陆板子即可。</p>
+<p>当然，想修改板子的网络配置首先需要连上板子。以灵汐板子为例，其需要将主机的IP设置成与板子IP在同一网段。
+我们首先将主机IP设置为<code>192.168.1.50</code>，登陆板子即可。</p>
 <h3 id="具体配置">1.1. 具体配置</h3>
 <p>用<code>cd /etc/netplan</code>进入配置目录下，使用<code>sudo vi 01-network-manager-all.yaml</code>对其进行修改，以下是修改的一个示例：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">network:</span></span><br><span class="line">  <span class="attr">version:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">renderer:</span> <span class="string">NetworkManager</span></span><br><span class="line">  <span class="attr">ethernets:</span></span><br><span class="line">    <span class="attr">eth0:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.1</span><span class="number">.100</span><span class="string">/24</span>]</span><br><span class="line">    <span class="attr">eth1:</span></span><br><span class="line">      <span class="attr">dhcp4:</span> <span class="literal">no</span></span><br><span class="line">      <span class="attr">addresses:</span> [<span class="number">192.168</span><span class="number">.137</span><span class="number">.2</span><span class="string">/24</span>]</span><br><span class="line">      <span class="attr">routes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">to:</span> <span class="string">default</span></span><br><span class="line">          <span class="attr">via:</span> <span class="number">192.168</span><span class="number">.137</span><span class="number">.1</span></span><br><span class="line">      <span class="attr">nameservers:</span></span><br><span class="line">        <span class="attr">addresses:</span> [<span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span>]</span><br><span class="line">        <span class="attr">addresses:</span> [<span class="number">114.114</span><span class="number">.114</span><span class="number">.114</span>]</span><br></pre></td></tr></table></figure>
 <p>修改完成后使用<code>sudo netplan apply</code>进行应用。</p>
 <h3 id="上述配置的解析">1.2. 上述配置的解析</h3>
-<ol>
-<li class="lvl-3">
-<p><code>network</code>：网络配置的顶级部分。</p>
-</li>
-<li class="lvl-3">
-<p><code>version: 2</code>：指定了网络配置文件的版本。</p>
-</li>
-<li class="lvl-3">
-<p><code>renderer: NetworkManager</code>：指定了网络管理器，这里使用的是NetworkManager。</p>
-</li>
-<li class="lvl-3">
-<p><code>ethernets</code>：这是一个包含以太网接口配置的部分。</p>
-<ul class="lvl-2">
-<li class="lvl-6"><code>eth0</code>：第一个以太网接口的名称。
-<ul class="lvl-4">
-<li class="lvl-10"><code>dhcp4: no</code>：禁用了DHCPv4，表示要手动配置IP地址。</li>
-<li class="lvl-10"><code>addresses: [192.168.1.100/24]</code>：设置静态IP地址为<code>192.168.1.100</code>，子网掩码为<code>24</code>（相当于<code>255.255.255.0</code>）。</li>
-</ul>
-</li>
-<li class="lvl-6"><code>eth1</code>：第二个以太网接口的名称。
-<ul class="lvl-4">
-<li class="lvl-10"><code>dhcp4: no</code></li>
-<li class="lvl-10"><code>addresses: [192.168.137.2/24]</code>：设置静态IP地址为<code>192.168.137.2</code>，子网掩码为<code>24</code>。</li>
-<li class="lvl-10"><code>routes</code>：设置默认网关为<code>192.168.137.1</code>。</li>
-<li class="lvl-10"><code>nameservers</code>：设置DNS服务器地址为<code>8.8.8.8</code>和<code>114.114.114.114</code>。</li>
-</ul>
-</li>
-</ul>
-</li>
+<ol type="1">
+<li><code>network</code>：网络配置的顶级部分。</li>
+<li><code>version: 2</code>：指定了网络配置文件的版本。</li>
+<li><code>renderer: NetworkManager</code>：指定了网络管理器，这里使用的是NetworkManager。</li>
+<li><code>ethernets</code>：这是一个包含以太网接口配置的部分。
+<ul>
+<li><code>eth0</code>：第一个以太网接口的名称。
+<ul>
+<li><code>dhcp4: no</code>：禁用了DHCPv4，表示要手动配置IP地址。</li>
+<li><code>addresses: [192.168.1.100/24]</code>：设置静态IP地址为<code>192.168.1.100</code>，子网掩码为<code>24</code>（相当于<code>255.255.255.0</code>）。</li>
+</ul></li>
+<li><code>eth1</code>：第二个以太网接口的名称。
+<ul>
+<li><code>dhcp4: no</code></li>
+<li><code>addresses: [192.168.137.2/24]</code>：设置静态IP地址为<code>192.168.137.2</code>，子网掩码为<code>24</code>。</li>
+<li><code>routes</code>：设置默认网关为<code>192.168.137.1</code>。</li>
+<li><code>nameservers</code>：设置DNS服务器地址为<code>8.8.8.8</code>和<code>114.114.114.114</code>。</li>
+</ul></li>
+</ul></li>
 </ol>
 <h2 id="网络共享">2. 网络共享</h2>
 <p>前一步骤中我们将<code>eth1</code>网口设置为了<code>192.168.137.2</code>，所以此处记得先将网线从<code>eth0</code>插到<code>eth1</code>上。</p>
-<p>打开<code>Control Panel - Network and Sharing Center</code>，选择左侧<code>Change adapter settings</code>。双击<code>Wi-Fi</code>，选择<code>Properties - Sharing - Internet Connection Sharing</code>，勾选所有选项，如下图所示。</p>
+<p>打开<code>Control Panel - Network and Sharing Center</code>，选择左侧<code>Change adapter settings</code>。
+双击<code>Wi-Fi</code>，选择<code>Properties - Sharing - Internet Connection Sharing</code>，勾选所有选项，如下图所示。</p>
 <div style="width:70%;margin:auto">
 <img src="/2023/12/09/%E9%9B%B6%E6%95%A3%E7%9F%A5%E8%AF%86/%E7%81%B5%E6%B1%90%E6%9D%BF%E5%AD%90%E7%BD%91%E7%BB%9C%E5%85%B1%E4%BA%AB%EF%BC%88%E5%85%B6%E4%BD%99%E8%AE%BE%E5%A4%87%E5%90%8C%E7%90%86%EF%BC%89/fig2.png" class title="勾选所有选项">
 </div>
@@ -273,6 +265,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ImportError: libGL.so.1: cannot open shared object file: No such file or directory</span><br></pre></td></tr></table></figure>
 <p>这应该与<code>cv2</code>和/或<code>opencv-python</code>有关系。此时可以尝试使用如下命令解决问题：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install ffmpeg libsm6 libxext6  -y</span><br></pre></td></tr></table></figure>
+
     </div>
 
     

@@ -310,29 +310,37 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="Definition">1. Definition</h2>
-<p>Backtracking is a problem-solving algorithmic technique that involves finding a solution incrementally by trying different options and undoing them if they lead to a dead end. It is commonly used in situations where you need to explore multiple possibilities to solve a problem, like searching for a path in a maze or solving puzzles like Sudoku. When a dead end is reached, the algorithm backtracks to the previous decision point and explores a different path until a solution is found or all possibilities have been exhausted.</p>
-<h2 id="The-Difference-Between-Generating-Subsets-and-Combinations">2. The Difference Between Generating Subsets and Combinations</h2>
+        <h2 id="definition">1. Definition</h2>
+<p>Backtracking is a problem-solving algorithmic technique that involves
+finding a solution incrementally by trying different options and undoing
+them if they lead to a dead end. It is commonly used in situations where
+you need to explore multiple possibilities to solve a problem, like
+searching for a path in a maze or solving puzzles like Sudoku. When a
+dead end is reached, the algorithm backtracks to the previous decision
+point and explores a different path until a solution is found or all
+possibilities have been exhausted.</p>
+<h2 id="the-difference-between-generating-subsets-and-combinations">2. The
+Difference Between Generating Subsets and Combinations</h2>
 <span id="more"></span>
-<h3 id="The-Choice">2.1. The Choice</h3>
-<p>When generating a subset, for every element in the input set, we have two independent choices:</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>INCLUDE this element in the current subset;</p>
-</li>
-<li class="lvl-2">
-<p>or EXCLUDE this element from the current subset.</p>
-</li>
+<h3 id="the-choice">2.1. The Choice</h3>
+<p>When generating a subset, for every element in the input set, we have
+two independent choices:</p>
+<ul>
+<li>INCLUDE this element in the current subset;</li>
+<li>or EXCLUDE this element from the current subset.</li>
 </ul>
-<p>However, for combinations, the number of choices is not fixed at each steps like in subsets.<br>
-When we are at a certain point in building a combination, we need to decide which number to add next.</p>
-<p>We often need a <code>for</code> loop in backtracking function for combinations, it helps us to iterate through the available choices.<br>
-Inside the loop, we make a choice, make a recursive call to continue building the combination, and then undo the choice before moving on to the next one.</p>
-<h2 id="Reference">3. Reference</h2>
-<ol>
-<li class="lvl-3">
-<p><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/introduction-to-backtracking-2/">Introduction to Backtracking - geeksforgeeks</a></p>
-</li>
+<p>However, for combinations, the number of choices is not fixed at each
+steps like in subsets. When we are at a certain point in building a
+combination, we need to decide which number to add next.</p>
+<p>We often need a <code>for</code> loop in backtracking function for
+combinations, it helps us to iterate through the available choices.
+Inside the loop, we make a choice, make a recursive call to continue
+building the combination, and then undo the choice before moving on to
+the next one.</p>
+<h2 id="reference">3. Reference</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/introduction-to-backtracking-2/">Introduction
+to Backtracking - geeksforgeeks</a></li>
 </ol>
 
     </div>
@@ -411,7 +419,8 @@ Inside the loop, we make a choice, make a recursive call to continue building th
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Definition"><span class="nav-text">1. Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Difference-Between-Generating-Subsets-and-Combinations"><span class="nav-text">2. The Difference Between Generating Subsets and Combinations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#The-Choice"><span class="nav-text">2.1. The Choice</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-text">3. Reference</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#definition"><span class="nav-text">1. Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#the-difference-between-generating-subsets-and-combinations"><span class="nav-text">2. The
+Difference Between Generating Subsets and Combinations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#the-choice"><span class="nav-text">2.1. The Choice</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reference"><span class="nav-text">3. Reference</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
